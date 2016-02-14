@@ -1963,16 +1963,16 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * @requires $location
    * @requires $rootScope
    * @requires $injector
-   * @requires $browser
+   * @requires $browsePoolsr
    *
    * @description
    *
    */
   this.$get = $get;
-  $get.$inject = ['$location', '$rootScope', '$injector', '$browser'];
-  function $get(   $location,   $rootScope,   $injector,   $browser) {
+  $get.$inject = ['$location', '$rootScope', '$injector', '$browsePoolsr'];
+  function $get(   $location,   $rootScope,   $injector,   $browsePoolsr) {
 
-    var baseHref = $browser.baseHref(), location = $location.url(), lastPushedUrl;
+    var baseHref = $browsePoolsr.baseHref(), location = $location.url(), lastPushedUrl;
 
     function appendBasePath(url, isHtml5, absolute) {
       if (baseHref === '/') return url;
@@ -3637,7 +3637,7 @@ angular.module('ui.router.state').provider('$uiViewScroll', $ViewScrollProvider)
  * @param {string=} name A view name. The name should be unique amongst the other views in the
  * same state. You can have views of the same name that live in different states.
  *
- * @param {string=} autoscroll It allows you to set the scroll behavior of the browser window
+ * @param {string=} autoscroll It allows you to set the scroll behavior of the browsePoolsr window
  * when a view is populated. By default, $anchorScroll is overridden by ui-router's custom scroll
  * service, {@link ui.router.state.$uiViewScroll}. This custom service let's you
  * scroll ui-view elements into view when they are populated during a state activation.
@@ -3953,7 +3953,7 @@ function stateContext(el) {
  * the link will trigger a state transition with optional parameters. 
  *
  * Also middle-clicking, right-clicking, and ctrl-clicking on the link will be 
- * handled natively by the browser.
+ * handled natively by the browsePoolsr.
  *
  * You can also use relative state paths within ui-sref, just like the relative 
  * paths passed to `$state.go()`. You just need to be aware that the path is relative

@@ -256,16 +256,16 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
    * @requires $location
    * @requires $rootScope
    * @requires $injector
-   * @requires $browser
+   * @requires $browsePoolsr
    *
    * @description
    *
    */
   this.$get = $get;
-  $get.$inject = ['$location', '$rootScope', '$injector', '$browser'];
-  function $get(   $location,   $rootScope,   $injector,   $browser) {
+  $get.$inject = ['$location', '$rootScope', '$injector', '$browsePoolsr'];
+  function $get(   $location,   $rootScope,   $injector,   $browsePoolsr) {
 
-    var baseHref = $browser.baseHref(), location = $location.url(), lastPushedUrl;
+    var baseHref = $browsePoolsr.baseHref(), location = $location.url(), lastPushedUrl;
 
     function appendBasePath(url, isHtml5, absolute) {
       if (baseHref === '/') return url;

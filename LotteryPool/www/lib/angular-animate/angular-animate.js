@@ -339,7 +339,7 @@ var $$AnimateChildrenDirective = [function() {
  * to side-step how `$animate` and ngAnimate work, but the goal is to allow pre-existing animations or
  * directives to create more complex animations that can be purely driven using CSS code.
  *
- * Note that only browsers that support CSS transitions and/or keyframe animations are capable of
+ * Note that only browsePoolsrs that support CSS transitions and/or keyframe animations are capable of
  * rendering animations triggered via `$animateCss` (bad news for IE9 and lower).
  *
  * ## Usage
@@ -541,12 +541,12 @@ var $$AnimateChildrenDirective = [function() {
 var CSS_PREFIX = '', TRANSITION_PROP, TRANSITIONEND_EVENT, ANIMATION_PROP, ANIMATIONEND_EVENT;
 
 // If unprefixed events are not supported but webkit-prefixed are, use the latter.
-// Otherwise, just use W3C names, browsers not supporting them at all will just ignore them.
+// Otherwise, just use W3C names, browsePoolsrs not supporting them at all will just ignore them.
 // Note: Chrome implements `window.onwebkitanimationend` and doesn't implement `window.onanimationend`
 // but at the same time dispatches the `animationend` event and not `webkitAnimationEnd`.
 // Register both events in case `window.onanimationend` is not supported because of that,
 // do the same for `transitionend` as Safari is likely to exhibit similar behavior.
-// Also, the only modern browser that uses vendor prefixes for transitions/keyframes is webkit
+// Also, the only modern browsePoolsr that uses vendor prefixes for transitions/keyframes is webkit
 // therefore there is no reason to test anymore for other vendor prefixes:
 // http://caniuse.com/#search=transition
 if (window.ontransitionend === undefined && window.onwebkittransitionend !== undefined) {
@@ -788,7 +788,7 @@ var $AnimateCssProvider = ['$animateProvider', function($animateProvider) {
         gcsLookup.flush();
         gcsStaggerLookup.flush();
 
-        //the line below will force the browser to perform a repaint so
+        //the line below will force the browsePoolsr to perform a repaint so
         //that all the animated elements within the animation frame will
         //be properly updated and drawn on screen. This is required to
         //ensure that the preparation animation is properly flushed so that
@@ -1274,7 +1274,7 @@ var $AnimateCssProvider = ['$animateProvider', function($animateProvider) {
           var elapsedTime = parseFloat(ev.elapsedTime.toFixed(ELAPSED_TIME_MAX_DECIMAL_PLACES));
 
           /* $manualTimeStamp is a mocked timeStamp value which is set
-           * within browserTrigger(). This is only here so that tests can
+           * within browsePoolsrTrigger(). This is only here so that tests can
            * mock animations properly. Real events fallback to event.timeStamp,
            * or, if they don't, then a timeStamp is automatically created for them.
            * We're checking to see if the timeStamp surpasses the expected delay,
@@ -1304,7 +1304,7 @@ var $$AnimateCssDriverProvider = ['$$animationProvider', function($$animationPro
   this.$get = ['$animateCss', '$rootScope', '$$AnimateRunner', '$rootElement', '$document', '$sniffer',
        function($animateCss,   $rootScope,   $$AnimateRunner,   $rootElement,   $document,   $sniffer) {
 
-    // only browsers that support these properties can render animations
+    // only browsePoolsrs that support these properties can render animations
     if (!$sniffer.animations && !$sniffer.transitions) return noop;
 
     var bodyNode = getDomNode($document).body;

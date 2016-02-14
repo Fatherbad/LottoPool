@@ -17,7 +17,7 @@
  * @param {string=} name A view name. The name should be unique amongst the other views in the
  * same state. You can have views of the same name that live in different states.
  *
- * @param {string=} autoscroll It allows you to set the scroll behavior of the browser window
+ * @param {string=} autoscroll It allows you to set the scroll behavior of the browsePoolsr window
  * when a view is populated. By default, $anchorScroll is overridden by ui-router's custom scroll
  * service, {@link ui.router.state.$uiViewScroll}. This custom service let's you
  * scroll ui-view elements into view when they are populated during a state activation.

@@ -228,7 +228,7 @@ var manualUppercase = function(s) {
 };
 
 
-// String#toLowerCase and String#toUpperCase don't produce correct results in browsers with Turkish
+// String#toLowerCase and String#toUpperCase don't produce correct results in browsePoolsrs with Turkish
 // locale, for this reason we need to detect this case and redefine lowercase/uppercase methods
 // with correct but slower alternatives.
 if ('i' !== 'I'.toLowerCase()) {
@@ -1558,8 +1558,8 @@ function angularInit(element, bootstrap) {
  * Note that Protractor based end-to-end tests cannot use this function to bootstrap manually.
  * They must use {@link ng.directive:ngApp ngApp}.
  *
- * Angular will detect if it has been loaded into the browser more than once and only allow the
- * first loaded script to be bootstrapped and will report a warning to the browser console for
+ * Angular will detect if it has been loaded into the browsePoolsr more than once and only allow the
+ * first loaded script to be bootstrapped and will report a warning to the browsePoolsr console for
  * each of the subsequent scripts. This prevents strange results in applications, where otherwise
  * multiple instances of Angular try to work on the DOM.
  *
@@ -2300,7 +2300,7 @@ function toDebugString(obj) {
   $AnimateProvider,
   $$CoreAnimateQueueProvider,
   $$CoreAnimateRunnerProvider,
-  $BrowserProvider,
+  $browsePoolsrProvider,
   $CacheFactoryProvider,
   $ControllerProvider,
   $DocumentProvider,
@@ -2461,7 +2461,7 @@ function publishExternalAPI(angular) {
         $animate: $AnimateProvider,
         $$animateQueue: $$CoreAnimateQueueProvider,
         $$AnimateRunner: $$CoreAnimateRunnerProvider,
-        $browser: $BrowserProvider,
+        $browsePoolsr: $browsePoolsrProvider,
         $cacheFactory: $CacheFactoryProvider,
         $controller: $ControllerProvider,
         $document: $DocumentProvider,
@@ -2532,7 +2532,7 @@ function publishExternalAPI(angular) {
  * delegates to Angular's built-in subset of jQuery, called "jQuery lite" or "jqLite."
  *
  * <div class="alert alert-success">jqLite is a tiny, API-compatible subset of jQuery that allows
- * Angular to manipulate the DOM in a cross-browser compatible way. **jqLite** implements only the most
+ * Angular to manipulate the DOM in a cross-browsePoolsr compatible way. **jqLite** implements only the most
  * commonly needed functionality with the goal of having a very small footprint.</div>
  *
  * To use `jQuery`, simply ensure it is loaded before the `angular.js` file.
@@ -3000,7 +3000,7 @@ var JQLitePrototype = JQLite.prototype = {
     if (document.readyState === 'complete') {
       setTimeout(trigger);
     } else {
-      this.on('DOMContentLoaded', trigger); // works for modern browsers and IE9
+      this.on('DOMContentLoaded', trigger); // works for modern browsePoolsrs and IE9
       // we can not use jqLite since we are not done loading and jQuery could be loaded later.
       // jshint -W064
       JQLite(window).on('load', trigger); // fallback to window.onload for others
@@ -3322,7 +3322,7 @@ forEach({
           jqLiteOn(element, MOUSE_EVENT_MAP[type], function(event) {
             var target = this, related = event.relatedTarget;
             // For mousenter/leave call the handler if related is outside the target.
-            // NB: No relatedTarget if the mouse left/entered the browser window
+            // NB: No relatedTarget if the mouse left/entered the browsePoolsr window
             if (!related || (related !== target && !target.contains(related))) {
               handle(event, type);
             }
@@ -4649,7 +4649,7 @@ function $AnchorScrollProvider() {
 
     // Helper function to get first anchor from a NodeList
     // (using `Array#some()` instead of `angular#forEach()` since it's more performant
-    //  and working in all supported browsers.)
+    //  and working in all supported browsePoolsrs.)
     function getFirstAnchor(list) {
       var result = null;
       Array.prototype.some.call(list, function(element) {
@@ -4728,7 +4728,7 @@ function $AnchorScrollProvider() {
     }
 
     // does not scroll when user clicks on anchor link that is currently on
-    // (no url change, no $location.hash() change), browser native does scroll
+    // (no url change, no $location.hash() change), browsePoolsr native does scroll
     if (autoScrollingEnabled) {
       $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
         function autoScrollWatchAction(newVal, oldVal) {
@@ -5349,17 +5349,17 @@ function $$AsyncCallbackProvider() {
 /**
  * ! This is a private undocumented service !
  *
- * @name $browser
+ * @name $browsePoolsr
  * @requires $log
  * @description
  * This object has two goals:
  *
- * - hide all the global state in the browser caused by the window object
- * - abstract away all the browser specific features and inconsistencies
+ * - hide all the global state in the browsePoolsr caused by the window object
+ * - abstract away all the browsePoolsr specific features and inconsistencies
  *
- * For tests we provide {@link ngMock.$browser mock implementation} of the `$browser`
+ * For tests we provide {@link ngMock.$browsePoolsr mock implementation} of the `$browsePoolsr`
  * service, which can be used for convenient testing of the application without the interaction with
- * the real browser apis.
+ * the real browsePoolsr apis.
  */
 /**
  * @param {object} window The global window object.
@@ -5367,7 +5367,7 @@ function $$AsyncCallbackProvider() {
  * @param {object} $log window.console or an object with the same interface.
  * @param {object} $sniffer $sniffer service
  */
-function Browser(window, document, $log, $sniffer) {
+function browsePoolsr(window, document, $log, $sniffer) {
   var self = this,
       rawDocument = document[0],
       location = window.location,
@@ -5430,7 +5430,7 @@ function Browser(window, document, $log, $sniffer) {
   //////////////////////////////////////////////////////////////
 
   var cachedState, lastHistoryState,
-      lastBrowserUrl = location.href,
+      lastbrowsePoolsrUrl = location.href,
       baseElement = document.find('base'),
       reloadLocation = null;
 
@@ -5438,7 +5438,7 @@ function Browser(window, document, $log, $sniffer) {
   lastHistoryState = cachedState;
 
   /**
-   * @name $browser#url
+   * @name $browsePoolsr#url
    *
    * @description
    * GETTER:
@@ -5458,14 +5458,14 @@ function Browser(window, document, $log, $sniffer) {
    * @param {object=} state object to use with pushState/replaceState
    */
   self.url = function(url, replace, state) {
-    // In modern browsers `history.state` is `null` by default; treating it separately
-    // from `undefined` would cause `$browser.url('/foo')` to change `history.state`
+    // In modern browsePoolsrs `history.state` is `null` by default; treating it separately
+    // from `undefined` would cause `$browsePoolsr.url('/foo')` to change `history.state`
     // to undefined via `pushState`. Instead, let's change `undefined` to `null` here.
     if (isUndefined(state)) {
       state = null;
     }
 
-    // Android Browser BFCache causes location, history reference to become stale.
+    // Android browsePoolsr BFCache causes location, history reference to become stale.
     if (location !== window.location) location = window.location;
     if (history !== window.history) history = window.history;
 
@@ -5476,11 +5476,11 @@ function Browser(window, document, $log, $sniffer) {
       // Don't change anything if previous and current URLs and states match. This also prevents
       // IE<10 from getting into redirect loop when in LocationHashbangInHtml5Url mode.
       // See https://github.com/angular/angular.js/commit/ffb2701
-      if (lastBrowserUrl === url && (!$sniffer.history || sameState)) {
+      if (lastbrowsePoolsrUrl === url && (!$sniffer.history || sameState)) {
         return self;
       }
-      var sameBase = lastBrowserUrl && stripHash(lastBrowserUrl) === stripHash(url);
-      lastBrowserUrl = url;
+      var sameBase = lastbrowsePoolsrUrl && stripHash(lastbrowsePoolsrUrl) === stripHash(url);
+      lastbrowsePoolsrUrl = url;
       lastHistoryState = state;
       // Don't use history API if only the hash changed
       // due to a bug in IE10/IE11 which leads
@@ -5506,7 +5506,7 @@ function Browser(window, document, $log, $sniffer) {
       return self;
     // getter
     } else {
-      // - reloadLocation is needed as browsers don't allow to read out
+      // - reloadLocation is needed as browsePoolsrs don't allow to read out
       //   the new location.href if a reload happened.
       // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=407172
       return reloadLocation || location.href.replace(/%27/g,"'");
@@ -5514,7 +5514,7 @@ function Browser(window, document, $log, $sniffer) {
   };
 
   /**
-   * @name $browser#state
+   * @name $browsePoolsr#state
    *
    * @description
    * This method is a getter.
@@ -5546,7 +5546,7 @@ function Browser(window, document, $log, $sniffer) {
   // This variable should be used *only* inside the cacheState function.
   var lastCachedState = null;
   function cacheState() {
-    // This should be the only place in $browser where `history.state` is read.
+    // This should be the only place in $browsePoolsr where `history.state` is read.
     cachedState = getCurrentState();
     cachedState = isUndefined(cachedState) ? null : cachedState;
 
@@ -5558,11 +5558,11 @@ function Browser(window, document, $log, $sniffer) {
   }
 
   function fireUrlChange() {
-    if (lastBrowserUrl === self.url() && lastHistoryState === cachedState) {
+    if (lastbrowsePoolsrUrl === self.url() && lastHistoryState === cachedState) {
       return;
     }
 
-    lastBrowserUrl = self.url();
+    lastbrowsePoolsrUrl = self.url();
     lastHistoryState = cachedState;
     forEach(urlChangeListeners, function(listener) {
       listener(self.url(), cachedState);
@@ -5570,7 +5570,7 @@ function Browser(window, document, $log, $sniffer) {
   }
 
   /**
-   * @name $browser#onUrlChange
+   * @name $browsePoolsr#onUrlChange
    *
    * @description
    * Register callback function that will be called, when url changes.
@@ -5580,7 +5580,7 @@ function Browser(window, document, $log, $sniffer) {
    * - user clicks on history (forward/back) button
    * - user clicks on a link
    *
-   * It's not called when url is changed by $browser.url() method
+   * It's not called when url is changed by $browsePoolsr.url() method
    *
    * The listener gets called with new url as parameter.
    *
@@ -5593,7 +5593,7 @@ function Browser(window, document, $log, $sniffer) {
   self.onUrlChange = function(callback) {
     // TODO(vojta): refactor to use node's syntax for events
     if (!urlChangeInit) {
-      // We listen on both (hashchange/popstate) when available, as some browsers (e.g. Opera)
+      // We listen on both (hashchange/popstate) when available, as some browsePoolsrs (e.g. Opera)
       // don't fire popstate when user change the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
@@ -5631,7 +5631,7 @@ function Browser(window, document, $log, $sniffer) {
   //////////////////////////////////////////////////////////////
 
   /**
-   * @name $browser#baseHref
+   * @name $browsePoolsr#baseHref
    *
    * @description
    * Returns current <base href>
@@ -5645,17 +5645,17 @@ function Browser(window, document, $log, $sniffer) {
   };
 
   /**
-   * @name $browser#defer
+   * @name $browsePoolsr#defer
    * @param {function()} fn A function, who's execution should be deferred.
    * @param {number=} [delay=0] of milliseconds to defer the function execution.
-   * @returns {*} DeferId that can be used to cancel the task via `$browser.defer.cancel()`.
+   * @returns {*} DeferId that can be used to cancel the task via `$browsePoolsr.defer.cancel()`.
    *
    * @description
    * Executes a fn asynchronously via `setTimeout(fn, delay)`.
    *
    * Unlike when calling `setTimeout` directly, in test this function is mocked and instead of using
    * `setTimeout` in tests, the fns are queued in an array, which can be programmatically flushed
-   * via `$browser.defer.flush()`.
+   * via `$browsePoolsr.defer.flush()`.
    *
    */
   self.defer = function(fn, delay) {
@@ -5671,12 +5671,12 @@ function Browser(window, document, $log, $sniffer) {
 
 
   /**
-   * @name $browser#defer.cancel
+   * @name $browsePoolsr#defer.cancel
    *
    * @description
    * Cancels a deferred task identified with `deferId`.
    *
-   * @param {*} deferId Token returned by the `$browser.defer` function.
+   * @param {*} deferId Token returned by the `$browsePoolsr.defer` function.
    * @returns {boolean} Returns `true` if the task hasn't executed yet and was successfully
    *                    canceled.
    */
@@ -5692,10 +5692,10 @@ function Browser(window, document, $log, $sniffer) {
 
 }
 
-function $BrowserProvider() {
+function $browsePoolsrProvider() {
   this.$get = ['$window', '$log', '$sniffer', '$document',
       function($window, $log, $sniffer, $document) {
-        return new Browser($window, $document, $log, $sniffer);
+        return new browsePoolsr($window, $document, $log, $sniffer);
       }];
 }
 
@@ -9038,7 +9038,7 @@ function $ControllerProvider() {
  * @requires $window
  *
  * @description
- * A {@link angular.element jQuery or jqLite} wrapper for the browser's `window.document` object.
+ * A {@link angular.element jQuery or jqLite} wrapper for the browsePoolsr's `window.document` object.
  *
  * @example
    <example module="documentExample">
@@ -9071,7 +9071,7 @@ function $DocumentProvider() {
  * @description
  * Any uncaught exception in angular expressions is delegated to this service.
  * The default implementation simply delegates to `$log.error` which logs it into
- * the browser console.
+ * the browsePoolsr console.
  *
  * In unit tests, if `angular-mocks.js` is loaded, this service is overridden by
  * {@link ngMock.$exceptionHandler mock $exceptionHandler} which aids in testing.
@@ -9491,7 +9491,7 @@ function $HttpProvider() {
      *
      * @description
      * The `$http` service is a core Angular service that facilitates communication with the remote
-     * HTTP servers via the browser's [XMLHttpRequest](https://developer.mozilla.org/en/xmlhttprequest)
+     * HTTP servers via the browsePoolsr's [XMLHttpRequest](https://developer.mozilla.org/en/xmlhttprequest)
      * object or via [JSONP](http://en.wikipedia.org/wiki/JSONP).
      *
      * For unit testing applications that use `$http` service, see
@@ -10414,7 +10414,7 @@ function createXhr() {
  *
  * @description
  * HTTP backend used by the {@link ng.$http service} that delegates to
- * XMLHttpRequest object or JSONP and deals with browser incompatibilities.
+ * XMLHttpRequest object or JSONP and deals with browsePoolsr incompatibilities.
  *
  * You should never need to use this service directly, instead use the higher-level abstractions:
  * {@link ng.$http $http} or {@link ngResource.$resource $resource}.
@@ -10423,16 +10423,16 @@ function createXhr() {
  * $httpBackend} which can be trained with responses.
  */
 function $HttpBackendProvider() {
-  this.$get = ['$browser', '$window', '$document', function($browser, $window, $document) {
-    return createHttpBackend($browser, createXhr, $browser.defer, $window.angular.callbacks, $document[0]);
+  this.$get = ['$browsePoolsr', '$window', '$document', function($browsePoolsr, $window, $document) {
+    return createHttpBackend($browsePoolsr, createXhr, $browsePoolsr.defer, $window.angular.callbacks, $document[0]);
   }];
 }
 
-function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDocument) {
+function createHttpBackend($browsePoolsr, createXhr, $browsePoolsrDefer, callbacks, rawDocument) {
   // TODO(vojta): fix the signature
   return function(method, url, post, callback, headers, timeout, withCredentials, responseType) {
-    $browser.$$incOutstandingRequestCount();
-    url = url || $browser.url();
+    $browsePoolsr.$$incOutstandingRequestCount();
+    url = url || $browsePoolsr.url();
 
     if (lowercase(method) == 'jsonp') {
       var callbackId = '_' + (callbacks.counter++).toString(36);
@@ -10468,7 +10468,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
         var status = xhr.status === 1223 ? 204 : xhr.status;
 
         // fix status code when it is 0 (0 status is undocumented).
-        // Occurs when accessing file resources or on Android 4.1 stock browser
+        // Occurs when accessing file resources or on Android 4.1 stock browsePoolsr
         // while retrieving files from application cache.
         if (status === 0) {
           status = response ? 200 : urlResolve(url).protocol == 'file' ? 404 : 0;
@@ -10501,7 +10501,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
           // WebKit added support for the json responseType value on 09/03/2013
           // https://bugs.webkit.org/show_bug.cgi?id=73648. Versions of Safari prior to 7 are
           // known to throw when setting the value "json" as the response type. Other older
-          // browsers implementing the responseType
+          // browsePoolsrs implementing the responseType
           //
           // The json response type can be ignored if not supported, because JSON payloads are
           // parsed on the client-side regardless.
@@ -10515,7 +10515,7 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
     }
 
     if (timeout > 0) {
-      var timeoutId = $browserDefer(timeoutRequest, timeout);
+      var timeoutId = $browsePoolsrDefer(timeoutRequest, timeout);
     } else if (isPromiseLike(timeout)) {
       timeout.then(timeoutRequest);
     }
@@ -10529,12 +10529,12 @@ function createHttpBackend($browser, createXhr, $browserDefer, callbacks, rawDoc
     function completeRequest(callback, status, response, headersString, statusText) {
       // cancel timeout and subsequent timeout promise resolution
       if (timeoutId !== undefined) {
-        $browserDefer.cancel(timeoutId);
+        $browsePoolsrDefer.cancel(timeoutId);
       }
       jsonpDone = xhr = null;
 
       callback(status, response, headersString, statusText);
-      $browser.$$completeOutstandingRequest(noop);
+      $browsePoolsr.$$completeOutstandingRequest(noop);
     }
   };
 
@@ -11359,7 +11359,7 @@ function LocationHtml5Url(appBase, basePrefix) {
 /**
  * LocationHashbangUrl represents url
  * This object is exposed as $location service when developer doesn't opt into html5 mode.
- * It also serves as the base class for html5 mode fallback on legacy browsers.
+ * It also serves as the base class for html5 mode fallback on legacy browsePoolsrs.
  *
  * @constructor
  * @param {string} appBase application base URL
@@ -11413,7 +11413,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
 
     /*
      * In Windows, on an anchor node on documents loaded from
-     * the filesystem, the browser will return a pathname
+     * the filesystem, the browsePoolsr will return a pathname
      * prefixed with the drive name ('/C:/path') when a
      * pathname without a drive is set:
      *  * a.setAttribute('href', '/foo')
@@ -11470,7 +11470,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
 
 /**
  * LocationHashbangUrl represents url
- * This object is exposed as $location service when html5 history api is enabled but the browser
+ * This object is exposed as $location service when html5 history api is enabled but the browsePoolsr
  * does not support it.
  *
  * @constructor
@@ -11817,9 +11817,9 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
    * Change the history state object when called with one parameter and return `$location`.
    * The state object is later passed to `pushState` or `replaceState`.
    *
-   * NOTE: This method is supported only in HTML5 mode and only in browsers supporting
+   * NOTE: This method is supported only in HTML5 mode and only in browsePoolsrs supporting
    * the HTML5 History API (i.e. methods `pushState` and `replaceState`). If you need to support
-   * older browsers (like IE9 or Android < 4.0), don't use this method.
+   * older browsePoolsrs (like IE9 or Android < 4.0), don't use this method.
    *
    * @param {object=} state State object for pushState or replaceState
    * @return {object} state
@@ -11831,10 +11831,10 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
 
     if (Location !== LocationHtml5Url || !this.$$html5) {
       throw $locationMinErr('nostate', 'History API state support is available only ' +
-        'in HTML5 mode and only in browsers supporting HTML5 History API');
+        'in HTML5 mode and only in browsePoolsrs supporting HTML5 History API');
     }
     // The user might modify `stateObject` after invoking `$location.state(stateObject)`
-    // but we're changing the $$state reference to $browser.state() during the $digest
+    // but we're changing the $$state reference to $browsePoolsr.state() during the $digest
     // so the modification window is narrow.
     this.$$state = isUndefined(state) ? null : state;
 
@@ -11871,17 +11871,17 @@ function locationGetterSetter(property, preprocess) {
  * @requires $rootElement
  *
  * @description
- * The $location service parses the URL in the browser address bar (based on the
+ * The $location service parses the URL in the browsePoolsr address bar (based on the
  * [window.location](https://developer.mozilla.org/en/window.location)) and makes the URL
  * available to your application. Changes to the URL in the address bar are reflected into
- * $location service and changes to $location are reflected into the browser address bar.
+ * $location service and changes to $location are reflected into the browsePoolsr address bar.
  *
  * **The $location service:**
  *
- * - Exposes the current URL in the browser address bar, so you can
+ * - Exposes the current URL in the browsePoolsr address bar, so you can
  *   - Watch and observe the URL.
  *   - Change the URL.
- * - Synchronizes the URL with the browser when the user
+ * - Synchronizes the URL with the browsePoolsr when the user
  *   - Changes the address bar.
  *   - Clicks the back or forward button (or clicks a History link).
  *   - Clicks on a link.
@@ -11928,7 +11928,7 @@ function $LocationProvider() {
    *   If object, sets `enabled`, `requireBase` and `rewriteLinks` to respective values. Supported
    *   properties:
    *   - **enabled** – `{boolean}` – (default: false) If true, will rely on `history.pushState` to
-   *     change urls where supported. Will fall back to hash-prefixed paths in browsers that do not
+   *     change urls where supported. Will fall back to hash-prefixed paths in browsePoolsrs that do not
    *     support `pushState`.
    *   - **requireBase** - `{boolean}` - (default: `true`) When html5Mode is enabled, specifies
    *     whether or not a <base> tag is required to be present. If `enabled` and `requireBase` are
@@ -11976,7 +11976,7 @@ function $LocationProvider() {
    * {@link ng.$location#$locationChangeSuccess $locationChangeSuccess} is fired.
    *
    * The `newState` and `oldState` parameters may be defined only in HTML5 mode and when
-   * the browser supports the HTML5 History API.
+   * the browsePoolsr supports the HTML5 History API.
    *
    * @param {Object} angularEvent Synthetic event object.
    * @param {string} newUrl New URL
@@ -11993,7 +11993,7 @@ function $LocationProvider() {
    * Broadcasted after a URL was changed.
    *
    * The `newState` and `oldState` parameters may be defined only in HTML5 mode and when
-   * the browser supports the HTML5 History API.
+   * the browsePoolsr supports the HTML5 History API.
    *
    * @param {Object} angularEvent Synthetic event object.
    * @param {string} newUrl New URL
@@ -12002,12 +12002,12 @@ function $LocationProvider() {
    * @param {string=} oldState History state object that was before it was changed.
    */
 
-  this.$get = ['$rootScope', '$browser', '$sniffer', '$rootElement', '$window',
-      function($rootScope, $browser, $sniffer, $rootElement, $window) {
+  this.$get = ['$rootScope', '$browsePoolsr', '$sniffer', '$rootElement', '$window',
+      function($rootScope, $browsePoolsr, $sniffer, $rootElement, $window) {
     var $location,
         LocationMode,
-        baseHref = $browser.baseHref(), // if base[href] is undefined, it defaults to ''
-        initialUrl = $browser.url(),
+        baseHref = $browsePoolsr.baseHref(), // if base[href] is undefined, it defaults to ''
+        initialUrl = $browsePoolsr.url(),
         appBase;
 
     if (html5Mode.enabled) {
@@ -12024,20 +12024,20 @@ function $LocationProvider() {
     $location = new LocationMode(appBase, '#' + hashPrefix);
     $location.$$parseLinkUrl(initialUrl, initialUrl);
 
-    $location.$$state = $browser.state();
+    $location.$$state = $browsePoolsr.state();
 
     var IGNORE_URI_REGEXP = /^\s*(javascript|mailto):/i;
 
-    function setBrowserUrlWithFallback(url, replace, state) {
+    function setbrowsePoolsrUrlWithFallback(url, replace, state) {
       var oldUrl = $location.url();
       var oldState = $location.$$state;
       try {
-        $browser.url(url, replace, state);
+        $browsePoolsr.url(url, replace, state);
 
         // Make sure $location.state() returns referentially identical (not just deeply equal)
         // state object; this makes possible quick checking if the state changed in the digest
         // loop. Checking deep equality would be too expensive.
-        $location.$$state = $browser.state();
+        $location.$$state = $browsePoolsr.state();
       } catch (e) {
         // Restore old values if pushState fails
         $location.url(oldUrl);
@@ -12048,7 +12048,7 @@ function $LocationProvider() {
     }
 
     $rootElement.on('click', function(event) {
-      // TODO(vojta): rewrite link when opening in new tab/window (in legacy browser)
+      // TODO(vojta): rewrite link when opening in new tab/window (in legacy browsePoolsr)
       // currently we open nice url link and redirect then
 
       if (!html5Mode.rewriteLinks || event.ctrlKey || event.metaKey || event.shiftKey || event.which == 2 || event.button == 2) return;
@@ -12082,7 +12082,7 @@ function $LocationProvider() {
           // getting double entries in the location history.
           event.preventDefault();
           // update location manually
-          if ($location.absUrl() != $browser.url()) {
+          if ($location.absUrl() != $browsePoolsr.url()) {
             $rootScope.$apply();
             // hack to work around FF6 bug 684208 when scenario runner clicks on links
             $window.angular['ff-684208-preventDefault'] = true;
@@ -12094,13 +12094,13 @@ function $LocationProvider() {
 
     // rewrite hashbang url <> html5 url
     if (trimEmptyHash($location.absUrl()) != trimEmptyHash(initialUrl)) {
-      $browser.url($location.absUrl(), true);
+      $browsePoolsr.url($location.absUrl(), true);
     }
 
     var initializing = true;
 
-    // update $location when $browser url changes
-    $browser.onUrlChange(function(newUrl, newState) {
+    // update $location when $browsePoolsr url changes
+    $browsePoolsr.onUrlChange(function(newUrl, newState) {
       $rootScope.$evalAsync(function() {
         var oldUrl = $location.absUrl();
         var oldState = $location.$$state;
@@ -12119,7 +12119,7 @@ function $LocationProvider() {
         if (defaultPrevented) {
           $location.$$parse(oldUrl);
           $location.$$state = oldState;
-          setBrowserUrlWithFallback(oldUrl, false, oldState);
+          setbrowsePoolsrUrlWithFallback(oldUrl, false, oldState);
         } else {
           initializing = false;
           afterLocationChange(oldUrl, oldState);
@@ -12128,11 +12128,11 @@ function $LocationProvider() {
       if (!$rootScope.$$phase) $rootScope.$digest();
     });
 
-    // update browser
+    // update browsePoolsr
     $rootScope.$watch(function $locationWatch() {
-      var oldUrl = trimEmptyHash($browser.url());
+      var oldUrl = trimEmptyHash($browsePoolsr.url());
       var newUrl = trimEmptyHash($location.absUrl());
-      var oldState = $browser.state();
+      var oldState = $browsePoolsr.state();
       var currentReplace = $location.$$replace;
       var urlOrStateChanged = oldUrl !== newUrl ||
         ($location.$$html5 && $sniffer.history && oldState !== $location.$$state);
@@ -12154,7 +12154,7 @@ function $LocationProvider() {
             $location.$$state = oldState;
           } else {
             if (urlOrStateChanged) {
-              setBrowserUrlWithFallback(newUrl, currentReplace,
+              setbrowsePoolsrUrlWithFallback(newUrl, currentReplace,
                                         oldState === $location.$$state ? null : $location.$$state);
             }
             afterLocationChange(oldUrl, oldState);
@@ -12184,7 +12184,7 @@ function $LocationProvider() {
  *
  * @description
  * Simple service for logging. Default implementation safely writes the message
- * into the browser's console (if present).
+ * into the browsePoolsr's console (if present).
  *
  * The main purpose of this service is to simplify debugging and troubleshooting.
  *
@@ -12365,7 +12365,7 @@ var $parseMinErr = minErr('$parse');
 //
 // This sandboxing technique is not perfect and doesn't aim to be. The goal is to prevent exploits
 // against the expression language, but not to prevent exploits that were enabled by exposing
-// sensitive JavaScript or browser APIs on Scope. Exposing such objects on a Scope is never a good
+// sensitive JavaScript or browsePoolsr APIs on Scope. Exposing such objects on a Scope is never a good
 // practice and therefore we are not even trying to protect against interaction with an object
 // explicitly exposed in this way.
 //
@@ -14430,7 +14430,7 @@ function $ParseProvider() {
  *
  * - $q is integrated with the {@link ng.$rootScope.Scope} Scope model observation
  *   mechanism in angular, which means faster propagation of resolution or rejection into your
- *   models and avoiding unnecessary browser repaints, which would result in flickering UI.
+ *   models and avoiding unnecessary browsePoolsr repaints, which would result in flickering UI.
  * - Q has many more features than $q, but that comes at a cost of bytes. $q is tiny, but contains
  *   all the important functionality needed for common async tasks.
  *
@@ -14474,9 +14474,9 @@ function $QProvider() {
 }
 
 function $$QProvider() {
-  this.$get = ['$browser', '$exceptionHandler', function($browser, $exceptionHandler) {
+  this.$get = ['$browsePoolsr', '$exceptionHandler', function($browsePoolsr, $exceptionHandler) {
     return qFactory(function(callback) {
-      $browser.defer(callback);
+      $browsePoolsr.defer(callback);
     }, $exceptionHandler);
   }];
 }
@@ -14996,8 +14996,8 @@ function $RootScopeProvider() {
     return ChildScope;
   }
 
-  this.$get = ['$injector', '$exceptionHandler', '$parse', '$browser',
-      function($injector, $exceptionHandler, $parse, $browser) {
+  this.$get = ['$injector', '$exceptionHandler', '$parse', '$browsePoolsr',
+      function($injector, $exceptionHandler, $parse, $browsePoolsr) {
 
     function destroyChildScope($event) {
         $event.currentScope.$$destroyed = true;
@@ -15635,13 +15635,13 @@ function $RootScopeProvider() {
             logIdx, logMsg, asyncTask;
 
         beginPhase('$digest');
-        // Check for changes to browser url that happened in sync before the call to $digest
-        $browser.$$checkUrlChange();
+        // Check for changes to browsePoolsr url that happened in sync before the call to $digest
+        $browsePoolsr.$$checkUrlChange();
 
         if (this === $rootScope && applyAsyncId !== null) {
           // If this is the root scope, and $applyAsync has scheduled a deferred $apply(), then
           // cancel the scheduled $apply and flush the queue of expressions to be evaluated.
-          $browser.defer.cancel(applyAsyncId);
+          $browsePoolsr.defer.cancel(applyAsyncId);
           flushApplyAsync();
         }
 
@@ -15782,7 +15782,7 @@ function $RootScopeProvider() {
 
         if (this === $rootScope) {
           //Remove handlers attached to window when $rootScope is removed
-          $browser.$$applicationDestroyed();
+          $browsePoolsr.$$applicationDestroyed();
         }
 
         incrementWatchersCount(this, -this.$$watchersCount);
@@ -15880,7 +15880,7 @@ function $RootScopeProvider() {
         // if we are outside of an $digest loop and this is the first time we are scheduling async
         // task also schedule async auto-flush
         if (!$rootScope.$$phase && !asyncQueue.length) {
-          $browser.defer(function() {
+          $browsePoolsr.defer(function() {
             if (asyncQueue.length) {
               $rootScope.$digest();
             }
@@ -15901,7 +15901,7 @@ function $RootScopeProvider() {
        *
        * @description
        * `$apply()` is used to execute an expression in angular from outside of the angular
-       * framework. (For example from browser DOM events, setTimeout, XHR or third party libraries).
+       * framework. (For example from browsePoolsr DOM events, setTimeout, XHR or third party libraries).
        * Because we are calling into the angular framework we need to perform proper scope life
        * cycle of {@link ng.$exceptionHandler exception handling},
        * {@link ng.$rootScope.Scope#$digest executing watches}.
@@ -15963,7 +15963,7 @@ function $RootScopeProvider() {
        *
        * @description
        * Schedule the invocation of $apply to occur at a later time. The actual time difference
-       * varies across browsers, but is typically around ~10 milliseconds.
+       * varies across browsePoolsrs, but is typically around ~10 milliseconds.
        *
        * This can be used to queue up multiple expressions which need to be evaluated in the same
        * digest.
@@ -16242,7 +16242,7 @@ function $RootScopeProvider() {
 
     function scheduleApplyAsync() {
       if (applyAsyncId === null) {
-        applyAsyncId = $browser.defer(function() {
+        applyAsyncId = $browsePoolsr.defer(function() {
           $rootScope.$apply(flushApplyAsync);
         });
       }
@@ -16808,13 +16808,13 @@ function $SceDelegateProvider() {
  * them} or {@link ng.$sce#trustAsResourceUrl wrap it} into a trusted value.
  *
  * *Please note*:
- * The browser's
- * [Same Origin Policy](https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
+ * The browsePoolsr's
+ * [Same Origin Policy](https://code.google.com/p/browsePoolsrsec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
  * and [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/)
  * policy apply in addition to this and may further restrict whether the template is successfully
  * loaded.  This means that without the right CORS policy, loading templates from a different domain
- * won't work on all browsers.  Also, loading templates from `file://` URL does not work on some
- * browsers.
+ * won't work on all browsePoolsrs.  Also, loading templates from `file://` URL does not work on some
+ * browsePoolsrs.
  *
  * ## This feels like too much overhead
  *
@@ -17386,12 +17386,12 @@ function $SceProvider() {
  * @requires $window
  * @requires $document
  *
- * @property {boolean} history Does the browser support html5 history api ?
- * @property {boolean} transitions Does the browser support CSS transition events ?
- * @property {boolean} animations Does the browser support CSS animation events ?
+ * @property {boolean} history Does the browsePoolsr support html5 history api ?
+ * @property {boolean} transitions Does the browsePoolsr support CSS transition events ?
+ * @property {boolean} animations Does the browsePoolsr support CSS animation events ?
  *
  * @description
- * This is very simple implementation of testing browser's features.
+ * This is very simple implementation of testing browsePoolsr's features.
  */
 function $SnifferProvider() {
   this.$get = ['$window', '$document', function($window, $document) {
@@ -17436,7 +17436,7 @@ function $SnifferProvider() {
       // http://code.google.com/p/android/issues/detail?id=17471
       // https://github.com/angular/angular.js/issues/904
 
-      // older webkit browser (533.9) on Boxee box has exactly the same problem as Android has
+      // older webkit browsePoolsr (533.9) on Boxee box has exactly the same problem as Android has
       // so let's not use the history API also
       // We are purposefully using `!(android < 4)` to cover the case when `android` is undefined
       // jshint -W018
@@ -17541,8 +17541,8 @@ function $TemplateRequestProvider() {
 }
 
 function $$TestabilityProvider() {
-  this.$get = ['$rootScope', '$browser', '$location',
-       function($rootScope,   $browser,   $location) {
+  this.$get = ['$rootScope', '$browsePoolsr', '$location',
+       function($rootScope,   $browsePoolsr,   $location) {
 
     /**
      * @name $testability
@@ -17616,7 +17616,7 @@ function $$TestabilityProvider() {
      * @name $$testability#getLocation
      *
      * @description
-     * Shortcut for getting the location in a browser agnostic way. Returns
+     * Shortcut for getting the location in a browsePoolsr agnostic way. Returns
      *     the path, search, and hash. (e.g. /path?a=b#hash)
      */
     testability.getLocation = function() {
@@ -17648,7 +17648,7 @@ function $$TestabilityProvider() {
      * @param {function} callback
      */
     testability.whenStable = function(callback) {
-      $browser.notifyWhenNoOutstandingRequests(callback);
+      $browsePoolsr.notifyWhenNoOutstandingRequests(callback);
     };
 
     return testability;
@@ -17656,8 +17656,8 @@ function $$TestabilityProvider() {
 }
 
 function $TimeoutProvider() {
-  this.$get = ['$rootScope', '$browser', '$q', '$$q', '$exceptionHandler',
-       function($rootScope,   $browser,   $q,   $$q,   $exceptionHandler) {
+  this.$get = ['$rootScope', '$browsePoolsr', '$q', '$$q', '$exceptionHandler',
+       function($rootScope,   $browsePoolsr,   $q,   $$q,   $exceptionHandler) {
 
     var deferreds = {};
 
@@ -17704,7 +17704,7 @@ function $TimeoutProvider() {
           promise = deferred.promise,
           timeoutId;
 
-      timeoutId = $browser.defer(function() {
+      timeoutId = $browsePoolsr.defer(function() {
         try {
           deferred.resolve(fn.apply(null, args));
         } catch (e) {
@@ -17741,7 +17741,7 @@ function $TimeoutProvider() {
       if (promise && promise.$$timeoutId in deferreds) {
         deferreds[promise.$$timeoutId].reject('canceled');
         delete deferreds[promise.$$timeoutId];
-        return $browser.defer.cancel(promise.$$timeoutId);
+        return $browsePoolsr.defer.cancel(promise.$$timeoutId);
       }
       return false;
     };
@@ -17752,8 +17752,8 @@ function $TimeoutProvider() {
 
 // NOTE:  The usage of window and document instead of $window and $document here is
 // deliberate.  This service depends on the specific behavior of anchor nodes created by the
-// browser (resolving and parsing URLs) that is unlikely to be provided by mock objects and
-// cause us to break tests.  In addition, when the browser resolves a URL for XHR, it
+// browsePoolsr (resolving and parsing URLs) that is unlikely to be provided by mock objects and
+// cause us to break tests.  In addition, when the browsePoolsr resolves a URL for XHR, it
 // doesn't know about mocked locations and resolves URLs to the real document - which is
 // exactly the behavior needed here.  There is little value is mocking these out for this
 // service.
@@ -17763,7 +17763,7 @@ var originUrl = urlResolve(window.location.href);
 
 /**
  *
- * Implementation Notes for non-IE browsers
+ * Implementation Notes for non-IE browsePoolsrs
  * ----------------------------------------
  * Assigning a URL to the href property of an anchor DOM node, even one attached to the DOM,
  * results both in the normalizing and parsing of the URL.  Normalizing means that a relative
@@ -17776,7 +17776,7 @@ var originUrl = urlResolve(window.location.href);
  * Implementation Notes for IE
  * ---------------------------
  * IE >= 8 and <= 10 normalizes the URL when assigned to the anchor node similar to the other
- * browsers.  However, the parsed components will not be set if the URL assigned did not specify
+ * browsePoolsrs.  However, the parsed components will not be set if the URL assigned did not specify
  * them.  (e.g. if you assign a.href = "foo", then a.protocol, a.host, etc. will be empty.)  We
  * work around that by performing the parsing in a 2nd step by taking a previously normalized
  * URL (e.g. by assigning to a.href) and assigning it a.href again.  This correctly populates the
@@ -17858,7 +17858,7 @@ function urlIsSameOrigin(requestUrl) {
  * @name $window
  *
  * @description
- * A reference to the browser's `window` object. While `window`
+ * A reference to the browsePoolsr's `window` object. While `window`
  * is globally available in JavaScript, it causes testability problems, because
  * it is a global variable. In angular we always refer to it through the
  * `$window` service, so it may be overridden, removed or mocked for testing.
@@ -18408,7 +18408,7 @@ function getTypeForFilter(val) {
          expect(element(by.id('currency-no-fractions')).getText()).toBe('USD$1,235');
        });
        it('should update', function() {
-         if (browser.params.browser == 'safari') {
+         if (browsePoolsr.params.browsePoolsr == 'safari') {
            // Safari does not understand the minus key. See
            // https://github.com/angular/protractor/issues/481
            return;
@@ -18781,7 +18781,7 @@ var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|
  * @param {string=} timezone Timezone to be used for formatting. It understands UTC/GMT and the
  *    continental US time zone abbreviations, but for general use, use a time zone offset, for
  *    example, `'+0430'` (4 hours, 30 minutes east of the Greenwich meridian)
- *    If not specified, the timezone of the browser will be used.
+ *    If not specified, the timezone of the browsePoolsr will be used.
  * @returns {string} Formatted string or the input if input is not recognized as date/millis.
  *
  * @example
@@ -19466,10 +19466,10 @@ var htmlAnchorDirective = valueFn({
           element(by.id('link-3')).click();
 
           // At this point, we navigate away from an Angular page, so we need
-          // to use browser.driver to get the base webdriver.
+          // to use browsePoolsr.driver to get the base webdriver.
 
-          browser.wait(function() {
-            return browser.driver.getCurrentUrl().then(function(url) {
+          browsePoolsr.wait(function() {
+            return browsePoolsr.driver.getCurrentUrl().then(function(url) {
               return url.match(/\/123$/);
             });
           }, 5000, 'page should navigate to /123');
@@ -19495,9 +19495,9 @@ var htmlAnchorDirective = valueFn({
           element(by.id('link-6')).click();
 
           // At this point, we navigate away from an Angular page, so we need
-          // to use browser.driver to get the base webdriver.
-          browser.wait(function() {
-            return browser.driver.getCurrentUrl().then(function(url) {
+          // to use browsePoolsr.driver to get the base webdriver.
+          browsePoolsr.wait(function() {
+            return browsePoolsr.driver.getCurrentUrl().then(function(url) {
               return url.match(/\/6$/);
             });
           }, 5000, 'page should navigate to /6');
@@ -19514,7 +19514,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  * Using Angular markup like `{{hash}}` in a `src` attribute doesn't
- * work right: The browser will fetch from the URL with the literal
+ * work right: The browsePoolsr will fetch from the URL with the literal
  * text `{{hash}}` until Angular replaces the expression inside
  * `{{hash}}`. The `ngSrc` directive solves this problem.
  *
@@ -19540,7 +19540,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  * Using Angular markup like `{{hash}}` in a `srcset` attribute doesn't
- * work right: The browser will fetch from the URL with the literal
+ * work right: The browsePoolsr will fetch from the URL with the literal
  * text `{{hash}}` until Angular replaces the expression inside
  * `{{hash}}`. The `ngSrcset` directive solves this problem.
  *
@@ -19580,10 +19580,10 @@ var htmlAnchorDirective = valueFn({
  * </div>
  * ```
  *
- * This is because the HTML specification does not require browsers to preserve the values of
+ * This is because the HTML specification does not require browsePoolsrs to preserve the values of
  * boolean attributes such as `disabled` (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
- * binding information would be lost when the browser removes the attribute.
+ * binding information would be lost when the browsePoolsr removes the attribute.
  *
  * @example
     <example>
@@ -19620,12 +19620,12 @@ var htmlAnchorDirective = valueFn({
  *
  * ### Why do we need `ngChecked`?
  *
- * The HTML specification does not require browsers to preserve the values of boolean attributes
+ * The HTML specification does not require browsePoolsrs to preserve the values of boolean attributes
  * such as checked. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
- * binding information would be lost when the browser removes the attribute.
+ * binding information would be lost when the browsePoolsr removes the attribute.
  * The `ngChecked` directive solves this problem for the `checked` attribute.
- * This complementary directive is not removed by the browser and so provides
+ * This complementary directive is not removed by the browsePoolsr and so provides
  * a permanent reliable place to store the binding information.
  * @example
     <example>
@@ -19655,12 +19655,12 @@ var htmlAnchorDirective = valueFn({
  * @priority 100
  *
  * @description
- * The HTML specification does not require browsers to preserve the values of boolean attributes
+ * The HTML specification does not require browsePoolsrs to preserve the values of boolean attributes
  * such as readonly. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
- * binding information would be lost when the browser removes the attribute.
+ * binding information would be lost when the browsePoolsr removes the attribute.
  * The `ngReadonly` directive solves this problem for the `readonly` attribute.
- * This complementary directive is not removed by the browser and so provides
+ * This complementary directive is not removed by the browsePoolsr and so provides
  * a permanent reliable place to store the binding information.
  * @example
     <example>
@@ -19690,12 +19690,12 @@ var htmlAnchorDirective = valueFn({
  * @priority 100
  *
  * @description
- * The HTML specification does not require browsers to preserve the values of boolean attributes
+ * The HTML specification does not require browsePoolsrs to preserve the values of boolean attributes
  * such as selected. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
- * binding information would be lost when the browser removes the attribute.
+ * binding information would be lost when the browsePoolsr removes the attribute.
  * The `ngSelected` directive solves this problem for the `selected` attribute.
- * This complementary directive is not removed by the browser and so provides
+ * This complementary directive is not removed by the browsePoolsr and so provides
  * a permanent reliable place to store the binding information.
  *
  * @example
@@ -19728,12 +19728,12 @@ var htmlAnchorDirective = valueFn({
  * @priority 100
  *
  * @description
- * The HTML specification does not require browsers to preserve the values of boolean attributes
+ * The HTML specification does not require browsePoolsrs to preserve the values of boolean attributes
  * such as open. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
- * binding information would be lost when the browser removes the attribute.
+ * binding information would be lost when the browsePoolsr removes the attribute.
  * The `ngOpen` directive solves this problem for the `open` attribute.
- * This complementary directive is not removed by the browser and so provides
+ * This complementary directive is not removed by the browsePoolsr and so provides
  * a permanent reliable place to store the binding information.
  * @example
      <example>
@@ -20170,7 +20170,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
  * # Alias: {@link ng.directive:ngForm `ngForm`}
  *
  * In Angular, forms can be nested. This means that the outer form is valid when all of the child
- * forms are valid as well. However, browsers do not allow nesting of `<form>` elements, so
+ * forms are valid as well. However, browsePoolsrs do not allow nesting of `<form>` elements, so
  * Angular provides the {@link ng.directive:ngForm `ngForm`} directive which behaves identically to
  * `<form>` but can be nested.  This allows you to have nested forms, which is very useful when
  * using Angular validation directives in forms that are dynamically generated using the
@@ -20192,7 +20192,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
  * # Submitting a form and preventing the default action
  *
  * Since the role of forms in client-side Angular applications is different than in classical
- * roundtrip apps, it is desirable for the browser not to translate the form submission into a full
+ * roundtrip apps, it is desirable for the browsePoolsr not to translate the form submission into a full
  * page reload that sends the data to the server. Instead some javascript logic should be triggered
  * to handle the form submission in an application-specific way.
  *
@@ -20496,17 +20496,17 @@ var inputType = {
      * @name input[date]
      *
      * @description
-     * Input with date validation and transformation. In browsers that do not yet support
+     * Input with date validation and transformation. In browsePoolsrs that do not yet support
      * the HTML5 date input, a text element will be used. In that case, text must be entered in a valid ISO-8601
      * date format (yyyy-MM-dd), for example: `2009-01-06`. Since many
-     * modern browsers do not yet support this input type, it is important to provide cues to users on the
+     * modern browsePoolsrs do not yet support this input type, it is important to provide cues to users on the
      * expected input format via a placeholder or label.
      *
      * The model must always be a Date object, otherwise Angular will throw an error.
      * Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
      *
      * The timezone to be used to read/write the `Date` instance in the model can be defined using
-     * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browser.
+     * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browsePoolsr.
      *
      * @param {string} ngModel Assignable angular expression to data-bind to.
      * @param {string=} name Property name of the form under which the control is published.
@@ -20556,13 +20556,13 @@ var inputType = {
 
         // currently protractor/webdriver does not support
         // sending keys to all known HTML5 input controls
-        // for various browsers (see https://github.com/angular/protractor/issues/562).
+        // for various browsePoolsrs (see https://github.com/angular/protractor/issues/562).
         function setInput(val) {
           // set the value of the element and force validation.
           var scr = "var ipt = document.getElementById('exampleInput'); " +
           "ipt.value = '" + val + "';" +
           "angular.element(ipt).scope().$apply(function(s) { s.myForm[ipt.name].$setViewValue('" + val + "'); });";
-          browser.executeScript(scr);
+          browsePoolsr.executeScript(scr);
         }
 
         it('should initialize to model', function() {
@@ -20593,7 +20593,7 @@ var inputType = {
     * @name input[datetime-local]
     *
     * @description
-    * Input with datetime validation and transformation. In browsers that do not yet support
+    * Input with datetime validation and transformation. In browsePoolsrs that do not yet support
     * the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
     * local datetime format (yyyy-MM-ddTHH:mm:ss), for example: `2010-12-28T14:57:00`.
     *
@@ -20601,7 +20601,7 @@ var inputType = {
     * Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
     *
     * The timezone to be used to read/write the `Date` instance in the model can be defined using
-    * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browser.
+    * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browsePoolsr.
     *
     * @param {string} ngModel Assignable angular expression to data-bind to.
     * @param {string=} name Property name of the form under which the control is published.
@@ -20651,13 +20651,13 @@ var inputType = {
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
-      // for various browsers (https://github.com/angular/protractor/issues/562).
+      // for various browsePoolsrs (https://github.com/angular/protractor/issues/562).
       function setInput(val) {
         // set the value of the element and force validation.
         var scr = "var ipt = document.getElementById('exampleInput'); " +
         "ipt.value = '" + val + "';" +
         "angular.element(ipt).scope().$apply(function(s) { s.myForm[ipt.name].$setViewValue('" + val + "'); });";
-        browser.executeScript(scr);
+        browsePoolsr.executeScript(scr);
       }
 
       it('should initialize to model', function() {
@@ -20688,7 +20688,7 @@ var inputType = {
    * @name input[time]
    *
    * @description
-   * Input with time validation and transformation. In browsers that do not yet support
+   * Input with time validation and transformation. In browsePoolsrs that do not yet support
    * the HTML5 date input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
    * local time format (HH:mm:ss), for example: `14:57:00`. Model must be a Date object. This binding will always output a
    * Date object to the model of January 1, 1970, or local date `new Date(1970, 0, 1, HH, mm, ss)`.
@@ -20697,7 +20697,7 @@ var inputType = {
    * Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
    *
    * The timezone to be used to read/write the `Date` instance in the model can be defined using
-   * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browser.
+   * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browsePoolsr.
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string=} name Property name of the form under which the control is published.
@@ -20747,13 +20747,13 @@ var inputType = {
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
-      // for various browsers (https://github.com/angular/protractor/issues/562).
+      // for various browsePoolsrs (https://github.com/angular/protractor/issues/562).
       function setInput(val) {
         // set the value of the element and force validation.
         var scr = "var ipt = document.getElementById('exampleInput'); " +
         "ipt.value = '" + val + "';" +
         "angular.element(ipt).scope().$apply(function(s) { s.myForm[ipt.name].$setViewValue('" + val + "'); });";
-        browser.executeScript(scr);
+        browsePoolsr.executeScript(scr);
       }
 
       it('should initialize to model', function() {
@@ -20784,7 +20784,7 @@ var inputType = {
     * @name input[week]
     *
     * @description
-    * Input with week-of-the-year validation and transformation to Date. In browsers that do not yet support
+    * Input with week-of-the-year validation and transformation to Date. In browsePoolsrs that do not yet support
     * the HTML5 week input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
     * week format (yyyy-W##), for example: `2013-W02`.
     *
@@ -20792,7 +20792,7 @@ var inputType = {
     * Invalid `Date` objects (dates whose `getTime()` is `NaN`) will be rendered as an empty string.
     *
     * The timezone to be used to read/write the `Date` instance in the model can be defined using
-    * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browser.
+    * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browsePoolsr.
     *
     * @param {string} ngModel Assignable angular expression to data-bind to.
     * @param {string=} name Property name of the form under which the control is published.
@@ -20844,13 +20844,13 @@ var inputType = {
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
-      // for various browsers (https://github.com/angular/protractor/issues/562).
+      // for various browsePoolsrs (https://github.com/angular/protractor/issues/562).
       function setInput(val) {
         // set the value of the element and force validation.
         var scr = "var ipt = document.getElementById('exampleInput'); " +
         "ipt.value = '" + val + "';" +
         "angular.element(ipt).scope().$apply(function(s) { s.myForm[ipt.name].$setViewValue('" + val + "'); });";
-        browser.executeScript(scr);
+        browsePoolsr.executeScript(scr);
       }
 
       it('should initialize to model', function() {
@@ -20879,7 +20879,7 @@ var inputType = {
    * @name input[month]
    *
    * @description
-   * Input with month validation and transformation. In browsers that do not yet support
+   * Input with month validation and transformation. In browsePoolsrs that do not yet support
    * the HTML5 month input, a text element will be used. In that case, the text must be entered in a valid ISO-8601
    * month format (yyyy-MM), for example: `2009-01`.
    *
@@ -20889,7 +20889,7 @@ var inputType = {
    * to the first of the month.
    *
    * The timezone to be used to read/write the `Date` instance in the model can be defined using
-   * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browser.
+   * {@link ng.directive:ngModelOptions ngModelOptions}. By default, this is the timezone of the browsePoolsr.
    *
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string=} name Property name of the form under which the control is published.
@@ -20939,13 +20939,13 @@ var inputType = {
 
       // currently protractor/webdriver does not support
       // sending keys to all known HTML5 input controls
-      // for various browsers (https://github.com/angular/protractor/issues/562).
+      // for various browsePoolsrs (https://github.com/angular/protractor/issues/562).
       function setInput(val) {
         // set the value of the element and force validation.
         var scr = "var ipt = document.getElementById('exampleInput'); " +
         "ipt.value = '" + val + "';" +
         "angular.element(ipt).scope().$apply(function(s) { s.myForm[ipt.name].$setViewValue('" + val + "'); });";
-        browser.executeScript(scr);
+        browsePoolsr.executeScript(scr);
       }
 
       it('should initialize to model', function() {
@@ -20987,10 +20987,10 @@ var inputType = {
    *
    * ## Issues with HTML5 constraint validation
    *
-   * In browsers that follow the
+   * In browsePoolsrs that follow the
    * [HTML5 specification](https://html.spec.whatwg.org/multipage/forms.html#number-state-%28type=number%29),
    * `input[number]` does not work as expected with {@link ngModelOptions `ngModelOptions.allowInvalid`}.
-   * If a non-number is entered in the input, the browser will report the value as an empty string,
+   * If a non-number is entered in the input, the browsePoolsr will report the value as an empty string,
    * which means the view / model values in `ngModel` and subsequently the scope value
    * will also be an empty string.
    *
@@ -21414,12 +21414,12 @@ function stringBasedInputType(ctrl) {
   });
 }
 
-function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
-  baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
+function textInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr) {
+  baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr);
   stringBasedInputType(ctrl);
 }
 
-function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr) {
   var type = lowercase(element[0].type);
 
   // In composition mode, users are still inputing intermediate text buffer,
@@ -21440,7 +21440,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
   var listener = function(ev) {
     if (timeout) {
-      $browser.defer.cancel(timeout);
+      $browsePoolsr.defer.cancel(timeout);
       timeout = null;
     }
     if (composing) return;
@@ -21454,7 +21454,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       value = trim(value);
     }
 
-    // If a control is suffering from bad input (due to native validators), browsers discard its
+    // If a control is suffering from bad input (due to native validators), browsePoolsrs discard its
     // value, so it may be necessary to revalidate (by calling $setViewValue again) even if the
     // control's value is the same empty value twice in a row.
     if (ctrl.$viewValue !== value || (value === '' && ctrl.$$hasNativeValidators)) {
@@ -21462,7 +21462,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     }
   };
 
-  // if the browser does support "input" event, we are fine - except on IE9 which doesn't fire the
+  // if the browsePoolsr does support "input" event, we are fine - except on IE9 which doesn't fire the
   // input event on backspace, delete or cut
   if ($sniffer.hasEvent('input')) {
     element.on('input', listener);
@@ -21471,7 +21471,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
     var deferListener = function(ev, input, origValue) {
       if (!timeout) {
-        timeout = $browser.defer(function() {
+        timeout = $browsePoolsr.defer(function() {
           timeout = null;
           if (!input || input.value !== origValue) {
             listener(ev);
@@ -21496,8 +21496,8 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
     }
   }
 
-  // if user paste into input using mouse on older browser
-  // or form autocomplete on newer browser, we need "change" event to catch it
+  // if user paste into input using mouse on older browsePoolsr
+  // or form autocomplete on newer browsePoolsr, we need "change" event to catch it
   element.on('change', listener);
 
   ctrl.$render = function() {
@@ -21588,9 +21588,9 @@ function createDateParser(regexp, mapping) {
 }
 
 function createDateInputType(type, regexp, parseDate, format) {
-  return function dynamicDateInputType(scope, element, attr, ctrl, $sniffer, $browser, $filter) {
+  return function dynamicDateInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr, $filter) {
     badInputChecker(scope, element, attr, ctrl);
-    baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
+    baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr);
     var timezone = ctrl && ctrl.$options && ctrl.$options.timezone;
     var previousDate;
 
@@ -21674,9 +21674,9 @@ function badInputChecker(scope, element, attr, ctrl) {
   }
 }
 
-function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function numberInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr) {
   badInputChecker(scope, element, attr, ctrl);
-  baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
+  baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr);
 
   ctrl.$$parserName = 'number';
   ctrl.$parsers.push(function(value) {
@@ -21728,10 +21728,10 @@ function numberInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   }
 }
 
-function urlInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function urlInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr) {
   // Note: no badInputChecker here by purpose as `url` is only a validation
-  // in browsers, i.e. we can always read out input.value even if it is not valid!
-  baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
+  // in browsePoolsrs, i.e. we can always read out input.value even if it is not valid!
+  baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr);
   stringBasedInputType(ctrl);
 
   ctrl.$$parserName = 'url';
@@ -21741,10 +21741,10 @@ function urlInputType(scope, element, attr, ctrl, $sniffer, $browser) {
   };
 }
 
-function emailInputType(scope, element, attr, ctrl, $sniffer, $browser) {
+function emailInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr) {
   // Note: no badInputChecker here by purpose as `url` is only a validation
-  // in browsers, i.e. we can always read out input.value even if it is not valid!
-  baseInputType(scope, element, attr, ctrl, $sniffer, $browser);
+  // in browsePoolsrs, i.e. we can always read out input.value even if it is not valid!
+  baseInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr);
   stringBasedInputType(ctrl);
 
   ctrl.$$parserName = 'email';
@@ -21789,7 +21789,7 @@ function parseConstantExpr($parse, context, name, expression, fallback) {
   return fallback;
 }
 
-function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filter, $parse) {
+function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browsePoolsr, $filter, $parse) {
   var trueValue = parseConstantExpr($parse, scope, 'ngTrueValue', attr.ngTrueValue, true);
   var falseValue = parseConstantExpr($parse, scope, 'ngFalseValue', attr.ngFalseValue, false);
 
@@ -21864,7 +21864,7 @@ function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filt
  * @description
  * HTML input element control. When used together with {@link ngModel `ngModel`}, it provides data-binding,
  * input state control, and validation.
- * Input control follows HTML5 input types and polyfills the HTML5 validation behavior for older browsers.
+ * Input control follows HTML5 input types and polyfills the HTML5 validation behavior for older browsePoolsrs.
  *
  * <div class="alert alert-warning">
  * **Note:** Not every feature offered is available for all input types.
@@ -21993,8 +21993,8 @@ function checkboxInputType(scope, element, attr, ctrl, $sniffer, $browser, $filt
       </file>
     </example>
  */
-var inputDirective = ['$browser', '$sniffer', '$filter', '$parse',
-    function($browser, $sniffer, $filter, $parse) {
+var inputDirective = ['$browsePoolsr', '$sniffer', '$filter', '$parse',
+    function($browsePoolsr, $sniffer, $filter, $parse) {
   return {
     restrict: 'E',
     require: ['?ngModel'],
@@ -22002,7 +22002,7 @@ var inputDirective = ['$browser', '$sniffer', '$filter', '$parse',
       pre: function(scope, element, attr, ctrls) {
         if (ctrls[0]) {
           (inputType[lowercase(attr.type)] || inputType.text)(scope, element, attr, ctrls[0], $sniffer,
-                                                              $browser, $filter, $parse);
+                                                              $browsePoolsr, $filter, $parse);
         }
       }
     }
@@ -22103,7 +22103,7 @@ var ngValueDirective = function() {
  * `{{ expression }}` which is similar but less verbose.
  *
  * It is preferable to use `ngBind` instead of `{{ expression }}` if a template is momentarily
- * displayed by the browser in its raw state before Angular compiles it. Since `ngBind` is an
+ * displayed by the browsePoolsr in its raw state before Angular compiles it. Since `ngBind` is an
  * element attribute, it makes the bindings invisible to the user while the page is loading.
  *
  * An alternative solution to this problem would be using the
@@ -22774,12 +22774,12 @@ var ngClassEvenDirective = classDirective('Even', 1);
  *
  * @description
  * The `ngCloak` directive is used to prevent the Angular html template from being briefly
- * displayed by the browser in its raw (uncompiled) form while your application is loading. Use this
+ * displayed by the browsePoolsr in its raw (uncompiled) form while your application is loading. Use this
  * directive to avoid the undesirable flicker effect caused by the html template display.
  *
  * The directive can be applied to the `<body>` element, but the preferred usage is to apply
  * multiple `ngCloak` directives to small portions of the page to permit progressive rendering
- * of the browser view.
+ * of the browsePoolsr view.
  *
  * `ngCloak` works in cooperation with the following css rule embedded within `angular.js` and
  * `angular.min.js`.
@@ -22791,7 +22791,7 @@ var ngClassEvenDirective = classDirective('Even', 1);
  * }
  * ```
  *
- * When this css rule is loaded by the browser, all html elements (including their children) that
+ * When this css rule is loaded by the browsePoolsr, all html elements (including their children) that
  * are tagged with the `ngCloak` directive are hidden. When Angular encounters this directive
  * during the compilation of the template it deletes the `ngCloak` element attribute, making
  * the compiled element visible.
@@ -23157,8 +23157,8 @@ var ngControllerDirective = [function() {
           var evilError = element(by.id('evilError'));
 
           function getAndClearSevereErrors() {
-            return browser.manage().logs().get('browser').then(function(browserLog) {
-              return browserLog.filter(function(logEntry) {
+            return browsePoolsr.manage().logs().get('browsePoolsr').then(function(browsePoolsrLog) {
+              return browsePoolsrLog.filter(function(logEntry) {
                 return logEntry.level.value > webdriver.logging.Level.WARNING.value;
               });
             });
@@ -23172,7 +23172,7 @@ var ngControllerDirective = [function() {
             getAndClearSevereErrors().then(function(filteredLog) {
               expect(filteredLog.length).toEqual(0);
               if (filteredLog.length) {
-                console.log('browser console errors: ' + util.inspect(filteredLog));
+                console.log('browsePoolsr console errors: ' + util.inspect(filteredLog));
               }
             });
           }
@@ -23199,7 +23199,7 @@ var ngControllerDirective = [function() {
           // For now, we only test on Chrome,
           // as Safari does not load the page with Protractor's injected scripts,
           // and Firefox webdriver always disables content security policy (#6358)
-          if (browser.params.browser !== 'chrome') {
+          if (browsePoolsr.params.browsePoolsr !== 'chrome') {
             return;
           }
 
@@ -23208,8 +23208,8 @@ var ngControllerDirective = [function() {
             clearErrors();
             // Need to reload the page as the page is already loaded when
             // we come here
-            browser.driver.getCurrentUrl().then(function(url) {
-              browser.get(url);
+            browsePoolsr.driver.getCurrentUrl().then(function(url) {
+              browsePoolsr.get(url);
             });
             expectNoErrors();
           });
@@ -23858,15 +23858,15 @@ var ngIfDirective = ['$animate', function($animate) {
  * {@link $sce#trustAsResourceUrl wrap them} as trusted values. Refer to Angular's {@link
  * ng.$sce Strict Contextual Escaping}.
  *
- * In addition, the browser's
- * [Same Origin Policy](https://code.google.com/p/browsersec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
+ * In addition, the browsePoolsr's
+ * [Same Origin Policy](https://code.google.com/p/browsePoolsrsec/wiki/Part2#Same-origin_policy_for_XMLHttpRequest)
  * and [Cross-Origin Resource Sharing (CORS)](http://www.w3.org/TR/cors/)
  * policy may further restrict whether the template is successfully loaded.
- * For example, `ngInclude` won't work for cross-domain requests on all browsers and for `file://`
- * access on some browsers.
+ * For example, `ngInclude` won't work for cross-domain requests on all browsePoolsrs and for `file://`
+ * access on some browsePoolsrs.
  *
  * @animations
- * enter - animation is used to bring new content into the browser.
+ * enter - animation is used to bring new content into the browsePoolsr.
  * leave - animation is used to animate existing content away.
  *
  * The enter and leave animation occur concurrently.
@@ -23963,7 +23963,7 @@ var ngIfDirective = ['$animate', function($animate) {
       });
 
       it('should load template2.html', function() {
-        if (browser.params.browser == 'firefox') {
+        if (browsePoolsr.params.browsePoolsr == 'firefox') {
           // Firefox can't handle using selects
           // See https://github.com/angular/protractor/issues/480
           return;
@@ -23974,7 +23974,7 @@ var ngIfDirective = ['$animate', function($animate) {
       });
 
       it('should change to blank', function() {
-        if (browser.params.browser == 'firefox') {
+        if (browsePoolsr.params.browsePoolsr == 'firefox') {
           // Firefox can't handle using selects
           return;
         }
@@ -24461,7 +24461,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  * data-binding. Notice how different directives (`contenteditable`, `ng-model`, and `required`)
  * collaborate together to achieve the desired result.
  *
- * `contenteditable` is an HTML5 attribute, which tells the browser to let the element
+ * `contenteditable` is an HTML5 attribute, which tells the browsePoolsr to let the element
  * contents be edited in place by the user.
  *
  * We are using the {@link ng.service:$sce $sce} service here and include the {@link ngSanitize $sanitize}
@@ -24505,7 +24505,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
               // Write data to the model
               function read() {
                 var html = element.html();
-                // When we clear the content editable the browser leaves a <br> behind
+                // When we clear the content editable the browsePoolsr leaves a <br> behind
                 // If strip-br attribute is provided then we strip this out
                 if ( attrs.stripBr && html == '<br>' ) {
                   html = '';
@@ -24529,7 +24529,7 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
     </file>
     <file name="protractor.js" type="protractor">
     it('should data-bind and become invalid', function() {
-      if (browser.params.browser == 'safari' || browser.params.browser == 'firefox') {
+      if (browsePoolsr.params.browsePoolsr == 'safari' || browsePoolsr.params.browsePoolsr == 'firefox') {
         // SafariDriver can't handle contenteditable
         // and Firefox driver can't clear contenteditables very well
         return;
@@ -25438,7 +25438,7 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
  *     `<input type="date">`, `<input type="time">`, ... . It understands UTC/GMT and the
  *     continental US time zone abbreviations, but for general use, use a time zone offset, for
  *     example, `'+0430'` (4 hours, 30 minutes east of the Greenwich meridian)
- *     If not specified, the timezone of the browser will be used.
+ *     If not specified, the timezone of the browsePoolsr will be used.
  *
  * @example
 
@@ -26724,10 +26724,10 @@ var ngPluralizeDirective = ['$locale', '$interpolate', '$log', function($locale,
  * returned for an object. (To mitigate this in Angular 1.3 the `ngRepeat` directive
  * used to sort the keys alphabetically.)
  *
- * Version 1.4 removed the alphabetic sorting. We now rely on the order returned by the browser
- * when running `for key in myObj`. It seems that browsers generally follow the strategy of providing
+ * Version 1.4 removed the alphabetic sorting. We now rely on the order returned by the browsePoolsr
+ * when running `for key in myObj`. It seems that browsePoolsrs generally follow the strategy of providing
  * keys in the order in which they were defined, although there are exceptions when keys are deleted
- * and reinstated. See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browser_issues
+ * and reinstated. See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete#Cross-browsePoolsr_issues
  *
  * If this is not desired, the recommended workaround is to convert your object into an array
  * that is sorted into the order that you prefer before providing it to `ngRepeat`.  You could

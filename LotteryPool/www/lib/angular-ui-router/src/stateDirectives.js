@@ -30,7 +30,7 @@ function stateContext(el) {
  * the link will trigger a state transition with optional parameters. 
  *
  * Also middle-clicking, right-clicking, and ctrl-clicking on the link will be 
- * handled natively by the browser.
+ * handled natively by the browsePoolsr.
  *
  * You can also use relative state paths within ui-sref, just like the relative 
  * paths passed to `$state.go()`. You just need to be aware that the path is relative
