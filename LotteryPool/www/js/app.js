@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
-
+.constant('log', '1')
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -26,11 +26,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
+      
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+
+        /*
+        Additional intelligence required!
+        
+        TODO: update menu options upon login. may need to be done by passing login boolean from controller
+        */
+        // templateUrl: 'templates/alternateMenu.html',
+
+    templateProvider: function (log) {
+        console.log('in templateUrl ' +log);
+        if (log === "1") {
+            templateUrl: 'alternateMenu.html';
+        } else {
+            return 'menu.html';
+        }
+    },
     controller: 'AppCtrl'
   })
 
