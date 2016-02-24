@@ -36,16 +36,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         
         TODO: update menu options upon login. may need to be done by passing login boolean from controller
         */
-        // templateUrl: 'templates/alternateMenu.html',
+         templateUrl: 'templates/alternateMenu.html',
 
-    templateProvider: function (log) {
+   /* templateProvider: function (log) {
         console.log('in templateUrl ' +log);
         if (log === "1") {
-            templateUrl: 'alternateMenu.html';
+            return 'alternateMenu.html';
         } else {
             return 'menu.html';
         }
-    },
+    },*/
     controller: 'AppCtrl'
   })
 
