@@ -12,7 +12,8 @@ angular.module('starter.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
     $scope.userInformation = {};
-    $scope.log = {loggedIn: false};
+    $scope.loggedIn = false;
+    $scope.loggedOut = true;
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -38,7 +39,8 @@ angular.module('starter.controllers', [])
 
     // Perform the login action when the user submits the login form
     $scope.doLogin = function () {
-        $scope.log = { loggedIn: true };
+        $scope.loggedIn = true;
+        $scope.loggedOut = false;
         console.log('Doing login', $scope.loginData);
 
         // TODO: Add communication with backend, perform the login
@@ -62,7 +64,8 @@ angular.module('starter.controllers', [])
 
     // Perform the registration action when the user submits the registration form
     $scope.doRegister = function () {
-        $scope.log = { loggedIn: true };
+        $scope.loggedIn = true;
+        $scope.loggedOut = false;
         console.log('Doing Registration', $scope.userInformation);
 
         // TODO: Add communication with backend, perform the new user addition
@@ -75,7 +78,8 @@ angular.module('starter.controllers', [])
     $scope.logout = function () {
         console.log('Logging out.......');
 
-        //$scope.log = { loggedIn: false };
+        $scope.loggedIn = false;
+        $scope.loggedOut = true;
     };
 
 })
