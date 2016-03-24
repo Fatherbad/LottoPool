@@ -31,21 +31,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/app',
     abstract: true,
 
-        /*
-        Additional intelligence required!
-        
-        TODO: update menu options upon login. may need to be done by passing login boolean from controller
-        */
+
          templateUrl: 'templates/alternateMenu.html',
 
-   /* templateProvider: function (log) {
-        console.log('in templateUrl ' +log);
-        if (log === "1") {
-            return 'alternateMenu.html';
-        } else {
-            return 'menu.html';
-        }
-    },*/
+
     controller: 'AppCtrl'
   })
 

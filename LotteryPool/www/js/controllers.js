@@ -26,6 +26,11 @@ angular.module('starter.controllers', [])
     }).then(function (modal) {
         $scope.modal1 = modal;
     });
+    $ionicModal.fromTemplateUrl('templates/alternateMenu.html', {
+        scope: $scope
+    }).then(function (modal) {
+        $scope.modal2 = modal;
+    });
 
     // Triggered in the login modal to close it
     $scope.closeLogin = function () {
@@ -75,11 +80,19 @@ angular.module('starter.controllers', [])
         }, 1000);
     };
 
+    $scope.closeAll = function () {
+        $scope.modal2.hide();
+    };
     $scope.logout = function () {
         console.log('Logging out.......');
 
         $scope.loggedIn = false;
         $scope.loggedOut = true;
+        // TODO: Add communication with backend, perform the new user addition
+
+        $timeout(function () {
+            $scope.closeAll();
+        }, 1000);
     };
 
 })
