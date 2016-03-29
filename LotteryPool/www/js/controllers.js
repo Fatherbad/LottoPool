@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function (Backand, $scope, $ionicModal, $timeout, registrationService) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
     $scope.userInformation = {};
+    $scope.passwordVerification;
     $scope.loggedIn = false;
     $scope.loggedOut = true;
 
@@ -42,11 +43,11 @@ angular.module('starter.controllers', [])
         $scope.modal.show();
     };
 
-    // Perform the login action when the user submits the login form
+    // Perform the login action when the user submits their login form
     $scope.doLogin = function () {
         $scope.loggedIn = true;
         $scope.loggedOut = false;
-        console.log('Doing login', $scope.loginData);
+        console.log('Doing login', $scope.loginData.username);
 
         // TODO: Add communication with backend, perform the login
 
@@ -55,8 +56,6 @@ angular.module('starter.controllers', [])
         }, 1000);
     };
 
-
-    //Registration scope begin
     // Triggered in the register modal to close it
     $scope.closeRegistration = function () {
         $scope.modal1.hide();
@@ -71,9 +70,9 @@ angular.module('starter.controllers', [])
     $scope.doRegister = function () {
         $scope.loggedIn = true;
         $scope.loggedOut = false;
-        console.log('Doing Registration', $scope.userInformation);
+        console.log('Doing Registration', $scope.userInformation.userName);
 
-        // TODO: Add communication with backend, perform the new user addition
+        registrationService.addUser($scope.userInformation);
 
         $timeout(function () {
             $scope.closeRegistration();
@@ -88,7 +87,7 @@ angular.module('starter.controllers', [])
 
         $scope.loggedIn = false;
         $scope.loggedOut = true;
-        // TODO: Add communication with backend, perform the new user addition
+        // TODO: Check password/username combo, verify existance in DB
 
         $timeout(function () {
             $scope.closeAll();
