@@ -43,7 +43,10 @@
 .service('ticketService', function () {
     var ticket = {};
 
-    var service = this;
+    var baseurl = '/1/objects/',
+             service = this,
+             objName = 'player',
+             getClause = '?search=';
 
     function setTicket(ticketInfo) {
         ticket = ticketInfo;
