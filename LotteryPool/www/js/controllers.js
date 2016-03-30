@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function (Backand, $scope, $ionicModal, $timeout, registrationService) {
+.controller('AppCtrl', function (Backand, $scope, $ionicModal, $timeout, registrationService, loginService) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
     $scope.userInformation = {};
-    $scope.passwordVerification;
+    //$scope.passwordVerification;
     $scope.loggedIn = false;
     $scope.loggedOut = true;
 
@@ -48,8 +48,9 @@ angular.module('starter.controllers', [])
         $scope.loggedIn = true;
         $scope.loggedOut = false;
         console.log('Doing login', $scope.loginData.username);
-
+        loginService.attemptLogin($scope.loginData);
         // TODO: Add communication with backend, perform the login
+        $scope.loginData = {};
 
         $timeout(function () {
             $scope.closeLogin();
@@ -73,6 +74,7 @@ angular.module('starter.controllers', [])
         console.log('Doing Registration', $scope.userInformation.userName);
 
         registrationService.addUser($scope.userInformation);
+        $scope.userInformation = {};
 
         $timeout(function () {
             $scope.closeRegistration();
@@ -105,6 +107,28 @@ angular.module('starter.controllers', [])
       { title: 'Rap', id: 5 },
       { title: 'Cowbell', id: 6 }
     ];
+})
+
+.controller('ticketManager', function (Backand, $scope, ticketService) {
+    $scope.ticketSelect = ticketService.fetchTicket();
+
+    $scope.tickets = [
+      { id: 1, ticknum: '00 11 22 33 44 55', date: '3/27/2016' },
+      { id: 2, ticknum: '11 22 33 44 55 66', date: '3/27/2016' },
+      { id: 3, ticknum: '22 33 44 55 66 77', date: '3/27/2016' },
+      { id: 4, ticknum: '01 54 53 67 89 99', date: '3/27/2016' },
+      { id: 5, ticknum: '27 68 42 91 04 55', date: '3/28/2016' },
+      { id: 6, ticknum: '20 11 12 34 74 85', date: '3/28/2016' },
+      { id: 7, ticknum: '51 22 33 44 55 06', date: '3/28/2016' },
+      { id: 8, ticknum: '52 33 44 55 66 67', date: '3/28/2016' },
+      { id: 9, ticknum: '81 54 53 67 89 39', date: '3/28/2016' },
+      { id: 10, ticknum: '17 68 42 91 24 55', date: '3/29/2016'},
+      { id: 11, ticknum: '95 67 19 29 02 15', date: '3/29/2016'}
+    ];
+
+    $scope.setPassTicket = function (ticket) {
+        ticketService.saveTicket(ticket);
+    }
 })
 
 .controller('PlaylistCtrl', function ($scope, $stateParams) {

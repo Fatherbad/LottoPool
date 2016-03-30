@@ -30,13 +30,16 @@
         </ion-header-bar>
         <ion-content class="hidebar">
             <ion-list>
+                <ion-item menu-close href="#/app/tickets">
+                    My Tickets
+                </ion-item>
                 <ion-item menu-close href="#/app/search">
                     View Active Pools
                 </ion-item>
                 <ion-item menu-close href="#/app/browse">
                     Find Pools
                 </ion-item>
-                <ion-item menu-close href="#/app/mainPage" ng-click="logout()">
+                <ion-item menu-close ng-click="logout()" href="#/app/mainPage">
                     Logout
                 </ion-item>
             </ion-list>

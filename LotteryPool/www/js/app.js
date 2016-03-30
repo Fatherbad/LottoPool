@@ -37,8 +37,6 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
         url: '/app',
         abstract: true,
         templateUrl: 'templates/alternateMenu.html',
-
-
         controller: 'AppCtrl'
     })
 
@@ -59,6 +57,26 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
           }
       }
   })
+    .state('app.tickets', {
+        url: '/tickets',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/tickets.html',
+                controller: 'ticketManager'
+            }
+        }
+    })
+
+    .state('app.singleTicket', {
+        url: '/tickets/:ticketId',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/ticket.html',
+                controller: 'ticketManager'
+            }
+        }
+    })
+
     .state('app.mainPage', {
         url: '/mainPage',
         views: {
