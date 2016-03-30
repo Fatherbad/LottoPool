@@ -4,3 +4,22 @@
     margin-right: auto;
     display: block;
 }
+
+.tickettext{
+    padding-top:3em;
+    font-size: 18.5px;
+    text-align: center;
+}
+
+.pbIndicator{
+    padding-top:3em;
+    font-size: 12px;
+    text-align: center;
+    padding-left: 190px;
+}
+
+.pbnumber{
+    font-size: 22px;
+    text-align: center;
+}
+

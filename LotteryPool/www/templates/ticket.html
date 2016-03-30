@@ -1,5 +1,20 @@
 ﻿<ion-view view-title="Your Ticket">
     <ion-content>
-        Ticket Number {{ticketSelect.ticknum}} {{ticketSelect.id}} {{ticketSelect.date}}
-    </ion-content>
+        <div class="item item-image" style="height: auto">
+            <img src="img/powerball.png" class="center">
+        </div>
+        <div class="tickettext">
+            power play - <b>{{ticketSelect.pp}}</b>
+        </div>
+        <div class="pbIndicator">     
+            Powerball
+        </div>
+        <div class="pbnumber">      
+          A. <b>{{ticketSelect.ticknum}}</b>
+        </div>
+        <div class="tickettext">
+            draw date: {{ticketSelect.date}}
+        </div>
+
+</ion-content>
 </ion-view>
