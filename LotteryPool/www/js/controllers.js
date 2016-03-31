@@ -83,10 +83,13 @@ angular.module('starter.controllers', [])
 
     $scope.closeAll = function () {
         $scope.modal2.hide();
+        $scope.modal.hide();
+        $scope.modal1.hide();
+
     };
     $scope.logout = function () {
         console.log('Logging out.......');
-
+        $scope.closeAll();
         $scope.loggedIn = false;
         $scope.loggedOut = true;
         // TODO: Check password/username combo, verify existance in DB
@@ -109,7 +112,7 @@ angular.module('starter.controllers', [])
     ];
 })
 
-.controller('ticketManager', function (Backand, $scope, ticketService) {
+.controller('ticketManager', function ($scope, ticketService) {
     $scope.ticketSelect = ticketService.fetchTicket();
 
     $scope.tickets = [
@@ -129,6 +132,18 @@ angular.module('starter.controllers', [])
     $scope.setPassTicket = function (ticket) {
         ticketService.saveTicket(ticket);
     }
+})
+
+.controller('MyPoolCtrl', function ($scope, $stateParams) {
+    $scope.mainPage = [
+        { id: 1, date:'3/31/2016', ticknum:'600,000/600,000', pi:0.15},
+        { id: 2, date: '4/16/2016', ticknum: '454,789/600,000', pi:0.18},
+        { id: 3, date: '4/16/2016', ticknum: '389,724/600,000', pi:1.10},
+        { id: 4, date: '5/20/2016', ticknum: '112,899/600,000', pi:0.07 },
+        { id: 5, date: '5/20/2016', ticknum: '171,000/600,000', pi:0.04 },
+        { id: 6, date: '7/05/2016', ticknum: '21,052/600,000', pi:2.00 },
+        { id: 7, date: '7/05/2016', ticknum: '14,503/600,000', pi:4.51 }
+    ];
 })
 
 .controller('PlaylistCtrl', function ($scope, $stateParams) {
