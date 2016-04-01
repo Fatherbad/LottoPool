@@ -19,7 +19,7 @@
 .service('loginService', function ($http, Backand) {
     var baseurl = '/1/objects/',
              service = this,
-             objName = 'player',
+             objName = 'player/',
              getClause = '?search=';
 
     function getLoginUrl() {
@@ -28,37 +28,36 @@
     }
 
     service.attemptLogin = function (loginData) {
-        console.log(getLoginUrl() + loginData.username);
-        var test = $http.get(Backand.getApiUrl() + baseurl + objName +'/3');
+        console.log('URL: ' + getLoginUrl() + loginData.username);
         var players = $http.get(getLoginUrl() + loginData.username);
-        //var test = JSON.stringify()
-        console.log(JSON.stringify(test));
-        console.log(players['data']);
+        console.log(players);
+        console.log(players.$$state);
+        console.log(players.$$state.value.data);
+        console.log('.data.data: ' + a);
         return 1;
-        //return $http.post(getUrl(), userInformation);
     }
 
 })
 
-.service('ticketService', function () {
-    var ticket = {};
+.service('passingService', function () {
+    var variable = {};
 
     var baseurl = '/1/objects/',
              service = this,
              objName = 'player',
              getClause = '?search=';
 
-    function setTicket(ticketInfo) {
-        ticket = ticketInfo;
+    function set(info) {
+        variable = info;
     }
-    function getTicket() {
-        return ticket;
+    function get() {
+        return variable;
     }
-    service.saveTicket = function (ticket) {
-        setTicket(ticket);
+    service.save = function (info) {
+        set(info);
         return 1;
     }
-    service.fetchTicket = function () {
-        return getTicket();
+    service.fetch = function () {
+        return get();
     }
 });

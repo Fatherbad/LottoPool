@@ -5536,12 +5536,16 @@ ion-tabs.tabs-color-active-dark .tab-item {
 .popup-head {
   padding: 15px 10px;
   border-bottom: 1px solid #eee;
-  text-align: center; }
+  text-align: center;
+  background: #41c670; 
+}
 
 .popup-title {
   margin: 0;
   padding: 0;
-  font-size: 15px; }
+  font-size: 15px;
+  color: #fff;
+}
 
 .popup-sub-title {
   margin: 5px 0 0 0;
