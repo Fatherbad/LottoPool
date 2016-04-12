@@ -48,7 +48,14 @@ angular.module('starter.controllers', [])
         $scope.loggedIn = true;
         $scope.loggedOut = false;
         console.log('Doing login', $scope.loginData.username);
-        loginService.attemptLogin($scope.loginData);
+        loginService.attemptLogin($scope.loginData).then(function (results) {
+            console.log(results.data.data[0]);
+            if (results.data.data[0] == null) {
+                console.log('onions')
+            }else if(results.data.data[0].password == $scope){
+
+            }
+        });
         // TODO: Add communication with backend, perform the login
         $scope.loginData = {};
 

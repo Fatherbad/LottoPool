@@ -27,16 +27,10 @@
         return Backand.getApiUrl() + baseurl + objName + getClause;
     }
 
-    service.attemptLogin = function (loginData) {
+    service.attemptLogin = function (loginData){
         console.log('URL: ' + getLoginUrl() + loginData.username);
-        var players = $http.get(getLoginUrl() + loginData.username);
-        console.log(players);
-        console.log(players.$$state);
-        console.log(players.$$state.value.data);
-        console.log('.data.data: ' + a);
-        return 1;
+        return $http.get(getLoginUrl() + loginData.username);
     }
-
 })
 
 .service('passingService', function () {
