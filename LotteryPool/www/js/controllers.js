@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function (Backand, $scope, $ionicModal, $timeout, registrationService, loginService) {
+.controller('AppCtrl', function (Backand, $scope, $location, $ionicModal, $timeout, registrationService, loginService) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -48,7 +48,14 @@ angular.module('starter.controllers', [])
         $scope.loggedIn = true;
         $scope.loggedOut = false;
         console.log('Doing login', $scope.loginData.username);
-        loginService.attemptLogin($scope.loginData);
+        loginService.attemptLogin($scope.loginData).then(function (results) {
+            console.log(results.data.data[0]);
+            if (results.data.data[0] == null) {
+                console.log('onions')
+            }else if(results.data.data[0].password == $scope){
+
+            }
+        });
         // TODO: Add communication with backend, perform the login
         $scope.loginData = {};
 
@@ -89,14 +96,11 @@ angular.module('starter.controllers', [])
     };
     $scope.logout = function () {
         console.log('Logging out.......');
-        $scope.closeAll();
+        //$scope.closeAll();
+
         $scope.loggedIn = false;
         $scope.loggedOut = true;
         // TODO: Check password/username combo, verify existance in DB
-
-        $timeout(function () {
-            $scope.closeAll();
-        }, 1000);
     };
 
 })
@@ -112,8 +116,8 @@ angular.module('starter.controllers', [])
     ];
 })
 
-.controller('ticketManager', function ($scope, ticketService) {
-    $scope.ticketSelect = ticketService.fetchTicket();
+.controller('ticketManager', function ($scope, passingService) {
+    $scope.ticketSelect = passingService.fetch();
 
     $scope.tickets = [
       { id: 1, ticknum: '00 11 22 33 44 - 55', date: '3/27/2016', pp: 'yes' },
@@ -130,21 +134,58 @@ angular.module('starter.controllers', [])
     ];
 
     $scope.setPassTicket = function (ticket) {
-        ticketService.saveTicket(ticket);
+        passingService.save(ticket);
     }
 })
 
-.controller('MyPoolCtrl', function ($scope, $stateParams) {
-    $scope.mainPage = [
+.controller('MyPoolController', function ($scope, $stateParams, passingService) {
+    $scope.pool = passingService.fetch();
+
+    $scope.pools = [
         { id: 1, date:'3/31/2016', ticknum:'600,000/600,000', pi:0.15},
         { id: 2, date: '4/16/2016', ticknum: '454,789/600,000', pi:0.18},
         { id: 3, date: '4/16/2016', ticknum: '389,724/600,000', pi:1.10},
         { id: 4, date: '5/20/2016', ticknum: '112,899/600,000', pi:0.07 },
-        { id: 5, date: '5/20/2016', ticknum: '171,000/600,000', pi:0.04 },
-        { id: 6, date: '7/05/2016', ticknum: '21,052/600,000', pi:2.00 },
-        { id: 7, date: '7/05/2016', ticknum: '14,503/600,000', pi:4.51 }
+        { id: 5, date: '5/20/2016', ticknum: '171,000/600,000', pi:0.04 }
     ];
+
+    $scope.setPool = function (pool){
+        passingService.save(pool);
+    }
 })
 
-.controller('PlaylistCtrl', function ($scope, $stateParams) {
+.controller('FindPoolController', function ($scope, $ionicPopup, passingService) {
+    $scope.pool = passingService.fetch();
+
+    $scope.pools = [
+        { id: 2, date:'4/16/2016', taken: '600,000', rem:'0', full: true},
+        { id: 3, date: '4/16/2016', taken: '589,724', rem: '10,276', full: false },
+        { id: 4, date: '4/16/2016', taken: '312,899', rem: '287,101', full: false },
+        { id: 5, date: '4/16/2016', taken: '271,127', rem: '328,873', full: false },
+        { id: 6, date: '5/20/2016', taken: '160,980', rem: '439,020', full: false }, 
+        { id: 7, date: '5/20/2016', taken: '270,564', rem: '329,436', full: false }
+    ];
+    $scope.setPool = function (pool) {
+        passingService.save(pool);
+    }
+
+    $scope.showConfirm = function () {
+        var confirmPopup = $ionicPopup.confirm({
+            cssClass: 'popup_text',
+            title: 'Confirm Join',
+            template: 'By confirming you agree to join this pool and pay the requested amount. Are you sure you want to join this lottery pool?'
+        });
+        confirmPopup.then(function (res) {
+            if (res) {
+                console.log('Adding user to lottery pool...');
+            } else {
+                console.log('User declined agreement...');
+            }
+        });
+    };
+})
+
+.controller('TicketPurchaseController', function ($scope, $stateParams) {
+    $scope.ticket = {};
+    //TODO: Add function to submit ticket to backend for player
 });

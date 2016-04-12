@@ -1,0 +1,18 @@
+﻿<ion-view view-title="Lottery Pool: {{pool.id}}">
+    <ion-content>
+        <div class="greentitle" style="padding-top:2em;">
+            <b>Welcome, Lottery Pool ID: {{pool.id}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Draw Date: {{pool.date}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Availability: {{pool.taken}}/600,000</b>
+        </div>
+        <div ng-if="!pool.full" style="text-align:center; padding-top:4em;">
+            <button class="button button-positive" ng-click="showConfirm()">
+                Join Pool
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

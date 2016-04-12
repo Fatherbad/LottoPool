@@ -1,0 +1,13 @@
+﻿<ion-view view-title="Current Lottery Pools">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="pool in pools" href="#/app/findLotteryPool/{{pool.id}}" ng-click="setPool({{pool}})">
+                <div align='left'>Lottery Pool: {{pool.id}}</div>
+                <div align='right'>
+                    <b ng-if="pool.full" style="color:red">Full </b>
+                    <b ng-if="!pool.full" style="color:limegreen">Open</b>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

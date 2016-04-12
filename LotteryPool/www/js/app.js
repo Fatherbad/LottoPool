@@ -44,7 +44,36 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
       url: '/search',
       views: {
           'menuContent': {
-              templateUrl: 'templates/search.html'
+              templateUrl: 'templates/search.html',
+              controller: 'MyPoolController'
+          }
+      }
+  })
+  .state('app.singlePool', {
+      url: '/search/:poolId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/lotterypool.html',
+              controller: 'MyPoolController'
+          }
+      }
+  })
+
+  .state('app.findLotteryPool', {
+      url: '/findLotteryPool',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/findLotteryPool.html',
+              controller: 'FindPoolController'
+          }
+      }
+  })
+  .state('app.openPool', {
+      url: '/findLotteryPool/:poolId',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/openPool.html',
+              controller: 'FindPoolController'
           }
       }
   })
@@ -53,7 +82,8 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
       url: '/browse',
       views: {
           'menuContent': {
-              templateUrl: 'templates/browse.html'
+              templateUrl: 'templates/browse.html',
+              controller: 'TicketPurchaseController'
           }
       }
   })
@@ -87,15 +117,7 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
         }
     })
 
-  .state('app.single', {
-      url: '/mainPage/:playlistId',
-      views: {
-          'menuContent': {
-              templateUrl: 'templates/playlist.html',
-              controller: 'PlaylistCtrl'
-          }
-      }
-  });
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/mainPage');
 });

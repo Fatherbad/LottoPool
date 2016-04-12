@@ -1,9 +1,49 @@
-<ion-view view-title="browsePools">
-  <ion-content>
-      <ion-list>
-          <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-              {{playlist.title}}
-          </ion-item>
-      </ion-list>
+<ion-view view-title="Purchase Powerball Tickets">
+  <ion-content style=" overflow: hidden">
+      <form>
+        <div class="greentitle" style="padding-top:1em;">
+            <b>Select Your Numbers: </b>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b1">
+          </label>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b2">
+          </label>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b3">
+          </label>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b4">
+          </label>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b5">
+          </label>
+        </div>
+        <div class="lottonumber">
+          <label class="item">
+              <input type="text" style="text-align: center" ng-model="ticket.b6">
+          </label>
+        </div>
+        <div class="powerplay" style="padding-top:10em">
+          <b>Would you like to make it a power-play? </b>
+          <div>
+            <input type="radio" name="powerplay" value="yes" > yes<br>
+            <input type="radio" name="powerplay" value="no" checked> no<br>
+          </div>
+        </div>
+        <div style="text-align:center; padding-top:2em">
+            <button class="button button-positive" type="submit">Purchase Ticket</button>
+        </div>
+      </form>
   </ion-content>
 </ion-view>

@@ -1,7 +1,7 @@
-<ion-view view-title="Tickets">
+<ion-view view-title="My Lottery Pools">
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="pool in pools" href="#/app/search/{{pool.id}}" ng-click="setPassTicket({{pool}})">
+            <ion-item ng-repeat="pool in pools" href="#/app/search/{{pool.id}}" ng-click="setPool({{pool}})">
                 <center>Lottery Pool: {{pool.id}}</center>
             </ion-item>
         </ion-list>

@@ -23,3 +23,32 @@
     text-align: center;
 }
 
+.lottonumber{
+    width: 5px;
+    height: 5px;
+    display: block;
+    float: left;
+    padding: 7.35%;
+}
+
+.greentitle{
+    color: #41c670;
+    font-size: 24px;
+    text-align:center;
+}
+
+.powerplay{
+    color: #41c670;
+    font-size: 12px;
+    text-align:center;
+}
+
+.subText {
+   color: #41c670;
+   font-size:18px;
+   text-align:center;
+}
+
+.popup_text{
+    color: black;
+}
