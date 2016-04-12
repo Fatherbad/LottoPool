@@ -1,18 +1,10 @@
-<ion-view view-title="browsePools">
-  <ion-content>
-      <ion-list>
-          <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-              {{playlist.title}}
-          </ion-item>
-      </ion-list>
-  </ion-content>
-    <form id="checkout" method="post" action="/checkout">
-        <div id="payment-form"></div>
-        <input type="submit" value="Pay $10">
-    </form>
+﻿<form id="checkout" method="post" action="/checkout">
+  <div id="payment-form"></div>
+  <input type="submit" value="Pay $10">
+</form>
 
-    <script src="https://js.braintreegateway.com/js/braintree-2.22.2.min.js"></script>
-    <script>
+<script src="https://js.braintreegateway.com/js/braintree-2.22.2.min.js"></script>
+<script>
 // We generated a client token for you so you can test out this code
 // immediately. In a production-ready integration, you will need to
 // generate a client token on your server (see section below).
@@ -21,5 +13,4 @@ var clientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJjY2ZhM
 braintree.setup(clientToken, "dropin", {
   container: "payment-form"
 });
-    </script>
-</ion-view>
+</script>
