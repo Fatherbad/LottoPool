@@ -117,6 +117,17 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
             }
         }
     })
+    
+        .state('app.payment', {
+               url: '/payment',
+               views: {
+               'menuContent': {
+               templateUrl: 'templates/payment.html',
+               controller: 'paymentController'
+               }
+               }
+               })
+
 
 
     // if none of the above states are matched, use this as the fallback
