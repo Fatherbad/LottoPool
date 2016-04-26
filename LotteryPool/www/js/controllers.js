@@ -12,6 +12,8 @@ angular.module('starter.controllers', [])
     // Form data for the login modal
     $scope.loginData = {};
     $scope.userInformation = {};
+    $scope.currentUser = {};
+
     //$scope.passwordVerification;
     $scope.loggedIn = false;
     $scope.loggedOut = true;
@@ -45,23 +47,25 @@ angular.module('starter.controllers', [])
 
     // Perform the login action when the user submits their login form
     $scope.doLogin = function () {
-        $scope.loggedIn = true;
-        $scope.loggedOut = false;
-        console.log('Doing login', $scope.loginData.username);
+        
+        console.log('Doing login', $scope.loginData.password);
+        pass = $scope.loginData.password;
         loginService.attemptLogin($scope.loginData).then(function (results) {
-            console.log(results.data.data[0]);
             if (results.data.data[0] == null) {
-                console.log('onions')
-            }else if(results.data.data[0].password == $scope){
+                console.log('error, invalid user information');
 
+            } else if (results.data.data[0].password == pass) {
+                console.log("ayyyyyy");
+                $scope.loggedIn = true;
+                $scope.loggedOut = false;
+
+                //TODO make a getter and setter in the service.js
+                $scope.currentUser = results.data.data[0];
+                $scope.closeLogin();
             }
         });
-        // TODO: Add communication with backend, perform the login
-        $scope.loginData = {};
 
-        $timeout(function () {
-            $scope.closeLogin();
-        }, 1000);
+        $scope.loginData = {};
     };
 
     // Triggered in the register modal to close it
@@ -100,7 +104,7 @@ angular.module('starter.controllers', [])
 
         $scope.loggedIn = false;
         $scope.loggedOut = true;
-        // TODO: Check password/username combo, verify existance in DB
+        $scope.currentUser = {};
     };
 
 })
@@ -116,10 +120,15 @@ angular.module('starter.controllers', [])
     ];
 })
 
-.controller('ticketManager', function ($scope, passingService) {
+.controller('ticketManager', function ($scope, passingService, ticketService) {
     $scope.ticketSelect = passingService.fetch();
-
-    $scope.tickets = [
+    $scope.tickets = {};
+    console.log($scope.currentUser.id);
+    ticketService.getTickets($scope.currentUser.id).then(function (results) {
+        console.log(results.data.myTickets);
+        $scope.tickets = results.data.myTickets;
+    });
+        /*$scope.tickets = [
       { id: 1, ticknum: '00 11 22 33 44 - 55', date: '3/27/2016', pp: 'yes' },
       { id: 2, ticknum: '11 22 33 44 55 - 66', date: '3/27/2016', pp: 'no' },
       { id: 3, ticknum: '22 33 44 55 66 - 77', date: '3/27/2016', pp: 'no' },
@@ -131,7 +140,7 @@ angular.module('starter.controllers', [])
       { id: 9, ticknum: '81 54 53 67 89 - 39', date: '3/28/2016', pp: 'no' },
       { id: 10, ticknum: '17 68 42 91 24 - 55', date: '3/29/2016', pp: 'no' },
       { id: 11, ticknum: '95 67 19 29 02 - 15', date: '3/29/2016', pp: 'no' }
-    ];
+    ];*/
 
     $scope.setPassTicket = function (ticket) {
         passingService.save(ticket);
@@ -185,7 +194,15 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('TicketPurchaseController', function ($scope, $stateParams) {
+.controller('TicketPurchaseController', function ($scope, $stateParams, ticketService) {
     $scope.ticket = {};
-    //TODO: Add function to submit ticket to backend for player
+   
+    $scope.addTicket = function (ticketInfo) {
+        console.log($scope.currentUser.id);
+        finalTicket = $scope.ticket.b1 + " " + $scope.ticket.b2 + " " + $scope.ticket.b3 + " "
+            + $scope.ticket.b4 + " " + $scope.ticket.b5 + " " + $scope.ticket.b6;
+        $scope.ticketInformation = {number:finalTicket, powerplay:true, date:'12/15/2017', owner:""+$scope.currentUser.id}
+        ticketService.addTicket($scope.ticketInformation)
+    }
+
 });
