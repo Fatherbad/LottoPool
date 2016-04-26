@@ -123,24 +123,16 @@ angular.module('starter.controllers', [])
 .controller('ticketManager', function ($scope, passingService, ticketService) {
     $scope.ticketSelect = passingService.fetch();
     $scope.tickets = {};
-    console.log($scope.currentUser.id);
-    ticketService.getTickets($scope.currentUser.id).then(function (results) {
-        console.log(results.data.myTickets);
-        $scope.tickets = results.data.myTickets;
-    });
-        /*$scope.tickets = [
-      { id: 1, ticknum: '00 11 22 33 44 - 55', date: '3/27/2016', pp: 'yes' },
-      { id: 2, ticknum: '11 22 33 44 55 - 66', date: '3/27/2016', pp: 'no' },
-      { id: 3, ticknum: '22 33 44 55 66 - 77', date: '3/27/2016', pp: 'no' },
-      { id: 4, ticknum: '01 54 53 67 89 - 99', date: '3/27/2016', pp: 'yes' },
-      { id: 5, ticknum: '27 68 42 91 04 - 55', date: '3/28/2016', pp: 'no' },
-      { id: 6, ticknum: '20 11 12 34 74 - 85', date: '3/28/2016', pp: 'yes' },
-      { id: 7, ticknum: '51 22 33 44 55 - 06', date: '3/28/2016', pp: 'yes' },
-      { id: 8, ticknum: '52 33 44 55 66 - 67', date: '3/28/2016', pp: 'yes' },
-      { id: 9, ticknum: '81 54 53 67 89 - 39', date: '3/28/2016', pp: 'no' },
-      { id: 10, ticknum: '17 68 42 91 24 - 55', date: '3/29/2016', pp: 'no' },
-      { id: 11, ticknum: '95 67 19 29 02 - 15', date: '3/29/2016', pp: 'no' }
-    ];*/
+
+
+    $scope.init = function () {
+        console.log('AY');
+        ticketService.getTickets($scope.currentUser.id).then(function (results) {
+            console.log(results.data.myTickets);
+            $scope.tickets = results.data.myTickets;
+        });
+    }
+    $scope.init();
 
     $scope.setPassTicket = function (ticket) {
         passingService.save(ticket);
@@ -201,8 +193,10 @@ angular.module('starter.controllers', [])
         console.log($scope.currentUser.id);
         finalTicket = $scope.ticket.b1 + " " + $scope.ticket.b2 + " " + $scope.ticket.b3 + " "
             + $scope.ticket.b4 + " " + $scope.ticket.b5 + " " + $scope.ticket.b6;
-        $scope.ticketInformation = {number:finalTicket, powerplay:true, date:'12/15/2017', owner:""+$scope.currentUser.id}
-        ticketService.addTicket($scope.ticketInformation)
+        if (finalTicket.length == 17) {
+            $scope.ticketInformation = { number: finalTicket, powerplay: true, date: '12/15/2017', owner: "" + $scope.currentUser.id }
+            ticketService.addTicket($scope.ticketInformation)
+        }
     }
 
 });

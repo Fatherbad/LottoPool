@@ -88,6 +88,7 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
       }
   })
     .state('app.tickets', {
+        cache: false,
         url: '/tickets',
         views: {
             'menuContent': {

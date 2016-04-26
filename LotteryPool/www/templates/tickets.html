@@ -1,6 +1,6 @@
 ﻿<ion-view view-title="Tickets">
     <ion-content>
-        <ion-list>
+        <ion-list ng-init="init()">
             <ion-item ng-repeat="ticket in tickets" href="#/app/tickets/{{ticket.id}}" ng-click="setPassTicket({{ticket}})">
               <center>Ticket {{ticket.id}}</center>
           </ion-item>
