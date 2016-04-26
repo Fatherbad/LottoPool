@@ -193,7 +193,7 @@ angular.module('starter.controllers', [])
         console.log($scope.currentUser.id);
         finalTicket = $scope.ticket.b1 + " " + $scope.ticket.b2 + " " + $scope.ticket.b3 + " "
             + $scope.ticket.b4 + " " + $scope.ticket.b5 + " " + $scope.ticket.b6;
-        if (finalTicket.length == 17) {
+        if (finalTicket.length >= 11) {
             $scope.ticketInformation = { number: finalTicket, powerplay: true, date: '12/15/2017', owner: "" + $scope.currentUser.id }
             ticketService.addTicket($scope.ticketInformation)
         }
