@@ -248,6 +248,7 @@ angular.module('starter.controllers', [])
     };
     $scope.isValidPayment = true;
     $scope.pp = false;
+    $scope.ticketIsValid = false;
 
     //Function to update mytickets for user
     $scope.storeTicketInfo = function () {
@@ -257,10 +258,12 @@ angular.module('starter.controllers', [])
         if ($scope.price.powerplay == '2.00') {
             $scope.pp = false;
         } else $scope.pp = true;
-
-        if (finalTicket.length >= 11) {
+        len = finalTicket.length;
+        console.log("ticket Test: " + len);
+        if (len >= 11 && len <= 17) {
+            $scope.ticketIsValid = true;
             $scope.ticketInformation = { number: finalTicket, powerplay: $scope.pp, date: '4/30/2016', owner: "" + $scope.currentUser.id }
-            ticketService.storeTicket($scope.ticketInformation);
+            //ticketService.storeTicket($scope.ticketInformation);
             $state.go('app.payment');
         }
         
@@ -274,17 +277,8 @@ angular.module('starter.controllers', [])
             $scope.makeStripePayment = makeStripePayment;
             
             function makeStripePayment(_cardInformation) {
-                //move after plugin is downloaded, to VERIFY
-                console.log('here');
-                ticketService.addTicket();
-                $ionicViewService.nextViewOptions({
-                    disableBack: true
-                });
+                
 
-                $state.go('app.browse');
-                //END move
-
-                return;
             if (!window.stripe) {
             alert("stripe plugin not installed");
             return;
@@ -310,7 +304,16 @@ angular.module('starter.controllers', [])
                  function(response) {
                     console.log(JSON.stringify(response, null, 2));
                     alert(JSON.stringify(response, null, 2));
-                   //VERIFY, but most likely move here
+                     //VERIFY, but most likely move here
+                     //move after plugin is downloaded, to VERIFY
+                    console.log('here');
+                    ticketService.addTicket();
+                    $ionicViewService.nextViewOptions({
+                        disableBack: true
+                    });
+
+                    $state.go('app.browse');
+                     //END move
 
                  },
                  function(response) {
