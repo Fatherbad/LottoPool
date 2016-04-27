@@ -58,6 +58,7 @@
 
 
 .service('ticketService', function ($http, Backand) {
+    var ticket = {};
     var baseurl = '/1/objects/',
             service = this,
             objName = 'userTickets/',
@@ -71,13 +72,59 @@
         return Backand.getApiUrl()+retrievebaseurl+userid+'?deep=true';
     }
 
-    service.addTicket = function (ticketInformation) {
-        return $http.post(getTicketUrl(), ticketInformation);
+    service.addTicket = function () {
+        console.log("add ticket: " + ticket);
+        return $http.post(getTicketUrl(), ticket);
+    }
+
+    service.storeTicket = function (ticketInformation) {
+        ticket = ticketInformation;
+        console.log('storing ' + ticket)
     }
 
     service.getTickets = function (userID) {
         console.log('GET URL: ' + getUserTicketUrl(userID));
         return $http.get(getUserTicketUrl(userID));
+    }
+
+})
+
+.service('lottoPoolService', function ($http, Backand) {
+
+    var baseurl = '/1/objects/',
+            service = this,
+            objName = 'lotteryPools/',
+            retrievebaseurl = '/1/objects/player_lotteryPools/',
+            players = 'player/';
+
+    function getComboUrl() {
+        return Backand.getApiUrl() + retrievebaseurl;
+    }
+
+    function getPoolUrl() {
+        return Backand.getApiUrl() + baseurl + objName;
+    }
+
+    function getUserPoolUrl(userid) {
+        return Backand.getApiUrl() + baseurl + players + userid + '?deep=true';
+    }
+
+    service.getOpenPools = function (userID) {
+        return $http.get(getPoolUrl());
+    }
+
+    service.addUser = function (registrationInformation) {
+        return $http.post(getComboUrl(), registrationInformation);
+    }
+    service.getPool = function(poolID) {
+        return $http.get(getPoolUrl() + poolID);
+    }
+    service.updatePool = function (poolID, updates) {
+        console.log(getPoolUrl()+poolID);
+        return $http.put(getPoolUrl() + poolID, updates);
+    }
+    service.getUserPools = function (userID) {
+        return $http.get(getUserPoolUrl(userID));
     }
 
 });

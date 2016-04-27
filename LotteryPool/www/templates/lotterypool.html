@@ -1,6 +1,24 @@
-﻿<ion-view view-title="Lottery Pool: {{pool.id}}">
+﻿<ion-view view-title="Lottery Pool: {{pool.lotteryPool.id}}">
     <ion-content>
-        TODO: Format, information per pool is available on this page.
-        Pool ID: {{pool.id}}
+        <div class="greentitle" style="padding-top:2em;">
+            <b>Your Lottery Pool ID: {{pool.lotteryPool.id}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Payment Deadline: {{pool.lotteryPool.deadline}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Draw Date: {{pool.lotteryPool.date}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Current Capacity: {{pool.lotteryPool.registered}}/{{pool.lotteryPool.max}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
+            <b>Entry Fee: ${{pool.lotteryPool.price}}</b>
+        </div>
+       <!-- <div ng-if="!pool.isfull" style="text-align:center; padding-top:4em;">
+            <button class="button button-positive" ng-click="showConfirm()">
+                Join Pool
+            </button>
+        </div>-->
     </ion-content>
 </ion-view>

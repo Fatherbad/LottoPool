@@ -42,6 +42,7 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
 
   .state('app.search', {
       url: '/search',
+      cache: false,
       views: {
           'menuContent': {
               templateUrl: 'templates/search.html',
@@ -61,6 +62,7 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
 
   .state('app.findLotteryPool', {
       url: '/findLotteryPool',
+      cache: false,
       views: {
           'menuContent': {
               templateUrl: 'templates/findLotteryPool.html',
@@ -118,17 +120,15 @@ angular.module('starter', ['ionic',  'backand', 'starter.controllers', 'starter.
         }
     })
     
-        .state('app.payment', {
-               url: '/payment',
-               views: {
-               'menuContent': {
-               templateUrl: 'templates/payment.html',
-               controller: 'paymentController'
-               }
-               }
-               })
-
-
+    .state('app.payment', {
+        url: '/browse/:1',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/payment.html',
+                controller: 'paymentController'
+            }
+        }
+    })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/mainPage');

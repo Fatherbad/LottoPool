@@ -1,5 +1,5 @@
 ﻿<ion-view view-title="Current Lottery Pools">
-    <ion-content>
+    <ion-content ng-init="init()">
         <ion-list>
             <ion-item ng-repeat="pool in pools" href="#/app/findLotteryPool/{{pool.id}}" ng-click="setPool({{pool}})">
                 <div align='left'>Lottery Pool: {{pool.id}}</div>

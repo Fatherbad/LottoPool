@@ -6,44 +6,48 @@
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b1">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b1">
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b2">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b2">
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b3">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b3">
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b4">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b4">
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b5">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b5">
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" style="text-align: center" ng-model="ticket.b6">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b6">
           </label>
         </div>
         <div class="powerplay" style="padding-top:10em">
           <b>Would you like to make it a power-play? </b>
           <div>
-            <input type="radio" name="powerplay" value="yes" > yes<br>
-            <input type="radio" name="powerplay" value="no" checked> no<br>
+            <input type="radio" ng-model="price.powerplay" value="3.00" > yes<br>
+            <input checked="checked" type="radio" ng-model="price.powerplay" value="2.00"> no<br>
           </div>
         </div>
-        <div style="text-align:center; padding-top:2em">
-            <button class="button button-positive" type="submit" href ="#/app/payment">Purchase Ticket</button>
+        <div class="powerplay" style="padding-top:2em">
+            <b>Current Total: ${{price.powerplay}}</b>
         </div>
+        <div style="text-align:center; padding-top:4em">
+            <a class="button button-positive" ng-click="storeTicketInfo()">Purchase Ticket</a>
+        </div>
+       
       </form>
   </ion-content>
 </ion-view>

@@ -4,12 +4,18 @@
             <b>Welcome, Lottery Pool ID: {{pool.id}}</b>
         </div>
         <div class="subText" style="padding-top:2em;">
+            <b>Registration Deadline: {{pool.deadline}}</b>
+        </div>
+        <div class="subText" style="padding-top:2em;">
             <b>Draw Date: {{pool.date}}</b>
         </div>
         <div class="subText" style="padding-top:2em;">
-            <b>Availability: {{pool.taken}}/600,000</b>
+            <b>Availability: {{pool.registered}}/{{pool.max}}</b>
         </div>
-        <div ng-if="!pool.full" style="text-align:center; padding-top:4em;">
+        <div class="subText" style="padding-top:2em;">
+            <b>Entry Fee: ${{pool.price}}</b>
+        </div>
+        <div ng-if="!pool.isfull" style="text-align:center; padding-top:4em;">
             <button class="button button-positive" ng-click="showConfirm()">
                 Join Pool
             </button>

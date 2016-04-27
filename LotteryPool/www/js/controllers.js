@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function (Backand, $scope, $location, $ionicModal, $timeout, registrationService, loginService) {
+.controller('AppCtrl', function (Backand, $scope, $location, $ionicModal, $timeout, $ionicViewService, $state, registrationService, loginService) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -52,10 +52,9 @@ angular.module('starter.controllers', [])
         pass = $scope.loginData.password;
         loginService.attemptLogin($scope.loginData).then(function (results) {
             if (results.data.data[0] == null) {
-                console.log('error, invalid user information');
+                alert('Invalid username/password');
 
             } else if (results.data.data[0].password == pass) {
-                console.log("ayyyyyy");
                 $scope.loggedIn = true;
                 $scope.loggedOut = false;
 
@@ -98,9 +97,14 @@ angular.module('starter.controllers', [])
         $scope.modal1.hide();
 
     };
+
+    //Perform logout
     $scope.logout = function () {
-        console.log('Logging out.......');
-        //$scope.closeAll();
+        $ionicViewService.nextViewOptions({
+            disableBack: true
+        });
+
+        $state.go('app.mainPage');
 
         $scope.loggedIn = false;
         $scope.loggedOut = true;
@@ -126,59 +130,110 @@ angular.module('starter.controllers', [])
 
 
     $scope.init = function () {
-        console.log('AY');
         ticketService.getTickets($scope.currentUser.id).then(function (results) {
             console.log(results.data.myTickets);
             $scope.tickets = results.data.myTickets;
         });
     }
-    $scope.init();
 
     $scope.setPassTicket = function (ticket) {
         passingService.save(ticket);
     }
 })
 
-.controller('MyPoolController', function ($scope, $stateParams, passingService) {
+.controller('MyPoolController', function ($scope, $stateParams, passingService, lottoPoolService) {
     $scope.pool = passingService.fetch();
 
-    $scope.pools = [
-        { id: 1, date:'3/31/2016', ticknum:'600,000/600,000', pi:0.15},
-        { id: 2, date: '4/16/2016', ticknum: '454,789/600,000', pi:0.18},
-        { id: 3, date: '4/16/2016', ticknum: '389,724/600,000', pi:1.10},
-        { id: 4, date: '5/20/2016', ticknum: '112,899/600,000', pi:0.07 },
-        { id: 5, date: '5/20/2016', ticknum: '171,000/600,000', pi:0.04 }
-    ];
+    $scope.pools = {};
+    $scope.init = function () {
+        lottoPoolService.getUserPools($scope.currentUser.id).then(function (results) {
+            console.log(results.data.player_lotteryPools[0].lotteryPool.id);
+            $scope.pools = results.data.player_lotteryPools;
+        });
+    }
 
     $scope.setPool = function (pool){
         passingService.save(pool);
     }
 })
 
-.controller('FindPoolController', function ($scope, $ionicPopup, passingService) {
+.controller('FindPoolController', function ($scope, $ionicPopup, passingService, lottoPoolService) {
+    //retrieve pool information for single page view.
     $scope.pool = passingService.fetch();
 
-    $scope.pools = [
-        { id: 2, date:'4/16/2016', taken: '600,000', rem:'0', full: true},
-        { id: 3, date: '4/16/2016', taken: '589,724', rem: '10,276', full: false },
-        { id: 4, date: '4/16/2016', taken: '312,899', rem: '287,101', full: false },
-        { id: 5, date: '4/16/2016', taken: '271,127', rem: '328,873', full: false },
-        { id: 6, date: '5/20/2016', taken: '160,980', rem: '439,020', full: false }, 
-        { id: 7, date: '5/20/2016', taken: '270,564', rem: '329,436', full: false }
-    ];
+    $scope.pools = {};
+
+    //Retrieve all active/opened lottery pools
+    $scope.init = function () {
+        lottoPoolService.getOpenPools().then(function (results) {
+            $scope.pools = results.data.data;
+        });
+    }
+
+    //Pass the pool number for the next display that the user would like to view.
     $scope.setPool = function (pool) {
         passingService.save(pool);
     }
+
+    var userPools;
+    $scope.isRegistered = false;
+    lottoPoolService.getUserPools($scope.currentUser.id).then(function(results) {
+        userPools = results.data.player_lotteryPools;
+    });
 
     $scope.showConfirm = function () {
         var confirmPopup = $ionicPopup.confirm({
             cssClass: 'popup_text',
             title: 'Confirm Join',
-            template: 'By confirming you agree to join this pool and pay the requested amount. Are you sure you want to join this lottery pool?'
+            template: 'By confirming you agree to pay the amount when before the pool\'s deadline, you also may not leave once you have joined. Are you sure you want to join this lottery pool?'
         });
         confirmPopup.then(function (res) {
             if (res) {
-                console.log('Adding user to lottery pool...');
+                $scope.registrationInformation = {
+                    lotteryPool: $scope.pool.id,
+                    owner: $scope.currentUser.id
+                };
+
+                /*
+                Current buildout for manual pool management
+                                                                 VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+                Susceptible to change if process is automated
+                */
+                
+                lottoPoolService.getPool($scope.pool.id).then(function (results) {
+
+                    var registered = results.data.registered,
+                        max = results.data.max;
+                   
+
+                    for (i = 0; i < userPools.length; i++) {
+                        if (userPools[i].lotteryPool.id == $scope.pool.id) {
+                            $scope.isRegistered = true;
+                        }
+                    }
+                    if (results.data.isfull || $scope.isRegistered) {
+                        console.log('ERROR WAS CAUGHT! User did not join the pool');
+                        //TODO: Pool is full or user has joined this pool, need error message
+                    } else {
+                        $scope.updates;
+                        if (1 + registered == max) {
+
+                            $scope.updates = {
+                                registered: ++registered,
+                                isfull: true
+                            }
+                        } else {
+                            $scope.updates = {
+                                registered: ++registered
+                            }
+                        }
+                        console.log('Adding user to lottery pool...');
+                        lottoPoolService.updatePool($scope.pool.id, $scope.updates);
+                        lottoPoolService.addUser($scope.registrationInformation);
+                    };
+                })
+
+                
             } else {
                 console.log('User declined agreement...');
             }
@@ -186,31 +241,50 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('TicketPurchaseController', function ($scope, $stateParams, ticketService) {
+.controller('TicketPurchaseController', function ($scope, $stateParams, $state, ticketService) {
     $scope.ticket = {};
-   
-    $scope.addTicket = function (ticketInfo) {
-        console.log($scope.currentUser.id);
+    $scope.price = {
+        powerplay: '2.00'
+    };
+    $scope.isValidPayment = true;
+    $scope.pp = false;
+
+    //Function to update mytickets for user
+    $scope.storeTicketInfo = function () {
         finalTicket = $scope.ticket.b1 + " " + $scope.ticket.b2 + " " + $scope.ticket.b3 + " "
             + $scope.ticket.b4 + " " + $scope.ticket.b5 + " " + $scope.ticket.b6;
+        console.log($scope.price.powerplay);
+        if ($scope.price.powerplay == '2.00') {
+            $scope.pp = false;
+        } else $scope.pp = true;
+
         if (finalTicket.length >= 11) {
-            $scope.ticketInformation = { number: finalTicket, powerplay: true, date: '12/15/2017', owner: "" + $scope.currentUser.id }
-            ticketService.addTicket($scope.ticketInformation)
+            $scope.ticketInformation = { number: finalTicket, powerplay: $scope.pp, date: '4/30/2016', owner: "" + $scope.currentUser.id }
+            ticketService.storeTicket($scope.ticketInformation);
+            $state.go('app.payment');
         }
+        
     }
 
 })
-.controller('paymentController', function($scope) {
+.controller('paymentController', function($scope, $state, $ionicViewService, ticketService) {
             $scope.cardType = {};
             $scope.card = {};
             
             $scope.makeStripePayment = makeStripePayment;
             
-            
-            /**
-             */
             function makeStripePayment(_cardInformation) {
-            
+                //move after plugin is downloaded, to VERIFY
+                console.log('here');
+                ticketService.addTicket();
+                $ionicViewService.nextViewOptions({
+                    disableBack: true
+                });
+
+                $state.go('app.browse');
+                //END move
+
+                return;
             if (!window.stripe) {
             alert("stripe plugin not installed");
             return;
@@ -221,26 +295,29 @@ angular.module('starter.controllers', [])
             return;
             }
             stripe.charges.create({
-                                  // amount is in cents so * 100
-                                  amount: _cardInformation.amount * 100,
-                                  currency: 'usd',
-                                  card: {
-                                  "number": _cardInformation.number,
-                                  "exp_month": _cardInformation.exp_month,
-                                  "exp_year": _cardInformation.exp_year,
-                                  "cvc": '123',
-                                  "name": "Aaron Saunders"
-                                  },
-                                  description: "Stripe Test Charge"
-                                  },
-                                  function(response) {
-                                  console.log(JSON.stringify(response, null, 2));
-                                  alert(JSON.stringify(response, null, 2));
-                                  },
-                                  function(response) {
-                                  alert(JSON.stringify(response))
-                                  } // error handler
-                                  );
+                // amount is in cents so * 100
+                    amount: _cardInformation.amount * 100,
+                    currency: 'usd',
+                    card: {
+                    "number": _cardInformation.number,
+                    "exp_month": _cardInformation.exp_month,
+                    "exp_year": _cardInformation.exp_year,
+                    "cvc": '123',
+                    "name": "Aaron Saunders"
+                 },
+                     description: "Stripe Test Charge"
+                 },
+                 function(response) {
+                    console.log(JSON.stringify(response, null, 2));
+                    alert(JSON.stringify(response, null, 2));
+                   //VERIFY, but most likely move here
+
+                 },
+                 function(response) {
+                    alert(JSON.stringify(response))
+                 } // error handler
+                 );
+
             }
             })
 .run(function($ionicPlatform) {
