@@ -250,6 +250,16 @@ angular.module('starter.controllers', [])
     $scope.pp = false;
     $scope.ticketIsValid = false;
 
+    $scope.cehckTicket = function () {
+        if ($scope.ticket.b1.value == '' || $scope.ticket.b2.value == '' || $scope.ticket.b3.value == '' || 
+                $scope.ticket.b4.value == '' || $scope.ticket.b5.value == '' || $scope.ticket.b6.value == ''){ // your question said "more than one element"
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+
     //Function to update mytickets for user
     $scope.storeTicketInfo = function () {
         finalTicket = $scope.ticket.b1 + " " + $scope.ticket.b2 + " " + $scope.ticket.b3 + " "
@@ -263,7 +273,7 @@ angular.module('starter.controllers', [])
         if (len >= 11 && len <= 17) {
             $scope.ticketIsValid = true;
             $scope.ticketInformation = { number: finalTicket, powerplay: $scope.pp, date: '4/30/2016', owner: "" + $scope.currentUser.id }
-            //ticketService.storeTicket($scope.ticketInformation);
+            ticketService.storeTicket($scope.ticketInformation);
             $state.go('app.payment');
         }
         

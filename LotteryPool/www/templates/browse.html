@@ -6,32 +6,32 @@
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b1">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b1" required>
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b2">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b2" required>
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b3">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b3" required>
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b4">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b4" required>
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b5">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b5" required>
           </label>
         </div>
         <div class="lottonumber">
           <label class="item">
-              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b6">
+              <input type="text" maxlength ="2" style="text-align: center" ng-model="ticket.b6" required>
           </label>
         </div>
         <div class="powerplay" style="padding-top:10em">
@@ -44,7 +44,7 @@
         <div class="powerplay" style="padding-top:2em">
             <b>Current Total: ${{price.powerplay}}</b>
         </div>
-        <div style="text-align:center; padding-top:4em">
+        <div ng-disabled="checkTicket()" style="text-align:center; padding-top:4em">
             <a class="button button-positive" ng-click="storeTicketInfo()">Purchase Ticket</a>
         </div>
        
