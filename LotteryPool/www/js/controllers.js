@@ -61,6 +61,8 @@ angular.module('starter.controllers', [])
                 //TODO make a getter and setter in the service.js
                 $scope.currentUser = results.data.data[0];
                 $scope.closeLogin();
+            } else {
+                alert("Invalid username or password");
             }
         });
 
@@ -212,7 +214,7 @@ angular.module('starter.controllers', [])
                         }
                     }
                     if (results.data.isfull || $scope.isRegistered) {
-                        console.log('ERROR WAS CAUGHT! User did not join the pool');
+                        alert("User is already participating in this pool");
                         //TODO: Pool is full or user has joined this pool, need error message
                     } else {
                         $scope.updates;
@@ -252,7 +254,7 @@ angular.module('starter.controllers', [])
 
     $scope.cehckTicket = function () {
         if ($scope.ticket.b1.value == '' || $scope.ticket.b2.value == '' || $scope.ticket.b3.value == '' || 
-                $scope.ticket.b4.value == '' || $scope.ticket.b5.value == '' || $scope.ticket.b6.value == ''){ // your question said "more than one element"
+                $scope.ticket.b4.value == '' || $scope.ticket.b5.value == '' || $scope.ticket.b6.value == '' ){
             return false;
         }
         else {
@@ -281,13 +283,23 @@ angular.module('starter.controllers', [])
 
 })
 .controller('paymentController', function($scope, $state, $ionicViewService, ticketService) {
+
             $scope.cardType = {};
             $scope.card = {};
             
             $scope.makeStripePayment = makeStripePayment;
             
             function makeStripePayment(_cardInformation) {
-                
+                //move after plugin is downloaded, to VERIFY
+                console.log('here');
+                ticketService.addTicket();
+                $ionicViewService.nextViewOptions({
+                    disableBack: true
+                });
+
+                $state.go('app.browse');
+                return;
+                //END move
 
             if (!window.stripe) {
             alert("stripe plugin not installed");
@@ -315,15 +327,7 @@ angular.module('starter.controllers', [])
                     console.log(JSON.stringify(response, null, 2));
                     alert(JSON.stringify(response, null, 2));
                      //VERIFY, but most likely move here
-                     //move after plugin is downloaded, to VERIFY
-                    console.log('here');
-                    ticketService.addTicket();
-                    $ionicViewService.nextViewOptions({
-                        disableBack: true
-                    });
-
-                    $state.go('app.browse');
-                     //END move
+                    
 
                  },
                  function(response) {
